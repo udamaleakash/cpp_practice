@@ -1,0 +1,33 @@
+**What is RAII in c++ ?
+
+-> RAII (Resource Acquisition Is Initialization) is a C++ idiom where a resource like memory, file, or lock is acquired in an object’s constructor and released in its destructor. Because the destructor runs automatically when the object goes out of scope, RAII ensures exception safety and prevents resource leaks. It makes code safer and easier to maintain by tying resource lifetime to object lifetime.
+For example, std::unique_ptr automatically frees memory when it goes out of scope.
+
+“RAII is for resource management, not just memory.”
+RAII releases resources in destructors, it guarantees no leaks even during exceptions.
+
+**Where is RAII used in the STL?
+
+Short answer:
+
+RAII is heavily used in the C++ STL. Examples include smart pointers like std::unique_ptr, file streams like std::ifstream, and lock guards like std::lock_guard, which automatically release resources in their destructors.
+
+** Can you implement your own RAII class?
+-> 
+class FileGuard {
+    FILE* f;
+public:
+    FileGuard(const char* name) { f = fopen(name, "r"); }
+    ~FileGuard() { if (f) fclose(f); }
+};
+
+**What are the benefits of RAII?
+
+Say any 3 of these confidently:
+Prevents resource leaks
+Exception safe
+Automatic cleanup
+Cleaner code
+Scope-based management
+Less manual delete/close.
+

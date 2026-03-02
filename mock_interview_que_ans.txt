@@ -1,0 +1,55 @@
+Q1. Briefly introduce yourself focusing on:
+
+-> I have around 3 years of experience as a C++ developer at Kimaya Infotech, working on Core Banking System modules like reconciliation, CTS clearing, and RBI reporting. I primarily work in Linux using C++, STL, and multithreading. I have focused on improving code reliability through debugging with GDB and optimizing financial report generation. I am now looking to grow into a product-focused environment where I can contribute at a larger scale.
+________________________________________________________________________________________________________________
+Q2. Explain the difference between unique_ptr, shared_ptr, and weak_ptr.
+-> All three are smart pointers used for automatic memory management.
+
+🔹 unique_ptr
+
+Exclusive ownership
+
+Only one pointer owns the resource
+
+Cannot be copied, only moved
+
+Lightweight (no reference counting)
+
+When to use: when single ownership is required.
+
+std::unique_ptr<int> p = std::make_unique<int>(10);
+
+🔹 shared_ptr
+
+Shared ownership
+
+Uses reference counting
+
+Resource deleted when count becomes 0
+
+Multiple shared_ptr can point to same object
+
+When to use: when multiple owners need the same resource.
+
+std::shared_ptr<int> p1 = std::make_shared<int>(10);
+std::shared_ptr<int> p2 = p1; // ref count++
+
+🔹 weak_ptr
+
+Non-owning reference to shared_ptr
+
+Does NOT increase reference count
+
+Used to break circular dependency
+
+Must be converted using lock()
+
+When to use: observe object without owning it.
+
+std::weak_ptr<int> wp = p1;
+
+weak_ptr is mainly used to prevent circular reference problems in shared_ptr.
+________________________________________________________________________________________________________________
+
+Q3. Reverse a singly linked list.
+-> 
