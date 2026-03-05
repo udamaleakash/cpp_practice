@@ -13,17 +13,22 @@ mutex m;
 condition_variable cv;
 
 void producer() {
-    /* producer wait must buffer is full */
     for (int i = 1; i <= 10; i++) {
         unique_lock<mutex> lock(m);
+        // unique_lock locks the mutex.
+        
+        /* producer wait must buffer is untail full */
+        cv.wait(lock, [] { return buffer.size() < MAX_SIZE; });// wait condition 
+        // Wait until buffer is NOT full.
 
-        cv.wait(lock, [] { return buffer.size() < MAX_SIZE; });
-
-        buffer.push(i);
+        buffer.push(i);// add item
         cout << "Produced: " << i << endl;
 
         lock.unlock();
         cv.notify_one();
+
+        // Unlock first (better performance).
+        // Notify one waiting thread (consumer).
     }
 }
 
@@ -31,22 +36,21 @@ void producer() {
 void consumer() {
     for (int i = 1; i <= 10; i++) {
         unique_lock<mutex> lock(m);
-
+        // wait until buffer has data
         cv.wait(lock, [] { return !buffer.empty(); });
 
         int val = buffer.front();
-        buffer.pop();
+        buffer.pop(); // remove item
         cout << "Consumed: " << val << endl;
 
-        lock.unlock();
-        cv.notify_one();
+        lock.unlock();// unlock & modify
+        cv.notify_one();// Notifies producer that space is available.
     }
 }
 
 int main() {
     thread t1(producer);
     thread t2(consumer);
-
 
     t1.join();
     t2.join();
