@@ -1,3 +1,11 @@
+Hr questions->
+Networking protocols
+scripting language
+kernal use?
+low level use?
+________________________________________________________________________________________________________________
+
+
 Q1. Briefly introduce yourself focusing on:
 
 -> I have around 3 years of experience as a C++ developer at Kimaya Infotech, working on Core Banking System modules like reconciliation, CTS clearing, and RBI reporting. I primarily work in Linux using C++, STL, and multithreading. I have focused on improving code reliability through debugging with GDB and optimizing financial report generation. I am now looking to grow into a product-focused environment where I can contribute at a larger scale.
