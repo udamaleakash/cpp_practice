@@ -56,6 +56,11 @@ END
 - git fetch origin
 - git rebase origin/master
 *************
+if sync chnages are shown before applay stash or upcoming/incoming do by commands-> (IMP)
+- git fetch origin
+- git rebase origin/akash.udamale
+- git push origin akash.udamale --force-with-lease
+**************
 _______________________________________________________________________________________________________________________________
 System time and date code - Inwardctsreturn file RRF format cserver
 ____________________________________________________________________________________________________________________________________
