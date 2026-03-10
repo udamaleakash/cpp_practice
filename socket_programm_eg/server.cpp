@@ -11,7 +11,7 @@ using namespace std;
 #define BUFFER_SIZE 1024
 
 
-
+/* Read bottom notes also code + explan function in below nad som interview questions*/
 
 int main()
 {
