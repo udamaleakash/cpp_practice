@@ -1,0 +1,13 @@
+// commands to run
+ 1331   g++ -c -fPIC mylib.cpp -o mylib.o
+ 1332  ls 
+ 1333  g++ -c -fPIC mylib.cpp -o mylib.o
+ 1334  ls -ltrh
+ 1335  g++ -shared -o libmylib.so mylib.o
+ 1336  ls -ltrh
+ 1337  g++ main.cpp -L. -lmylib -o app
+ 1338  ls -ltrh
+ 1339 
+ 1340  
+ 1341  export LD_LIBRARY_PATH=.
+ 1342  ./app

@@ -173,7 +173,7 @@ Answer:
 It converts host byte order to network byte order.
 Network uses big-endian format.
 
-⭐ How to Impress Interviewer ⭐
+**How to Impress Interviewer**
 Explain like this:
 ->
 "In my TCP client-server implementation, the server first creates a socket using socket(), binds it to a specific port using bind(), then listens for incoming connections using listen(). When a client connects, the server accepts the connection using accept(). After connection establishment via TCP 3-way handshake, the client sends a message using send() and the server receives it using read() or recv(). Finally the server sends a response and both sides close the socket."
