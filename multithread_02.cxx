@@ -76,7 +76,6 @@ void consumer()
 }
 int main()
 {
-
     thread t3(task);
     t3.join(); // join is manadtory otherwise program is termainate
     thread t4(increment);
@@ -87,6 +86,7 @@ int main()
     t6.join();
     cout << "Increment: " << count << endl;
 
+    // Race Condition:-> Multiple threads access the same data at the same time, and the result becomes unpredictable.
     // Improve mutex handling using RAII, means use use lock_guard
     thread t7(decrement);
     thread t8(decrement);
@@ -97,7 +97,6 @@ int main()
     cout << "Decrement: " << count2 << endl;
 
     /* Producer–Consumer Problem (Multithreading) */
-
     /* The Producer–Consumer problem is a classic synchronization problem where:
         A producer thread generates data and adds it to a shared buffer (like a queue).
         A consumer thread removes and processes that data.
@@ -117,7 +116,9 @@ int main()
     t2.join();
 
     /* What is Deadlock?
-        A deadlock is a situation in multithreading where Two or more threads are waiting forever for each other to release resources, and none of them can proceed. 
+        Threads are waiting for each other forever → program freezes.
+
+        A deadlock is a situation in multithreading where Two or more threads are waiting forever for each other to release resources, and none of them can proceed.
 
         What happens?
         thread1 locks m1 and waits for m2
@@ -130,5 +131,9 @@ int main()
         Person B holds key 2, needs key 1
         Both wait forever
     */
-   
+
+    /* Race condition :- multiple threads access at same time - wrong results
+       Dead lock      :- multiple threads wait for each other - application freeze
+    */
+
 }
