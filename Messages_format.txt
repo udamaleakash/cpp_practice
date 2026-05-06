@@ -1,5 +1,5 @@
 
-Hi Prasanna,
+Hi [Name],
 
 I’m a Software Developer with 3 years of experience in Modern C++, STL, DSA, and Multithreading, currently working on Core Banking System development at Kimaya Infotech in Pune. I’m exploring new C/C++ opportunities and would love to connect.
 

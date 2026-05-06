@@ -43,7 +43,6 @@ public:
                     this->tasks.pop();
 
                     lock.unlock();
-
                     // execute task
                     task();
                 } }));
