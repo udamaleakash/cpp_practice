@@ -80,7 +80,7 @@ int main()
     t3.join(); // join is manadtory otherwise program is termainate
     thread t4(increment);
     thread t5(increment);
-    thread t6(increment);
+    thread t6(increment); 
     t4.join();
     t5.join();
     t6.join();
