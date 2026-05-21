@@ -94,7 +94,9 @@ Creates a communication endpoint.*/
     return 0;
 }
 /* Overall Flow
+
 Server Flow
+
 socket()
 bind()
 listen()
@@ -102,6 +104,7 @@ accept()
 read()
 send()
 close()
+
 Client Flow
 socket()
 connect()
@@ -179,6 +182,27 @@ Explain like this:
 "In my TCP client-server implementation, the server first creates a socket using socket(), binds it to a specific port using bind(), then listens for incoming connections using listen(). When a client connects, the server accepts the connection using accept(). After connection establishment via TCP 3-way handshake, the client sends a message using send() and the server receives it using read() or recv(). Finally the server sends a response and both sides close the socket."
 This structured explanation impresses interviewers.
 
+/* Overall Flow
+
+Server Flow -
+
+socket()
+bind()
+listen()
+accept()
+read()
+send()
+close()
+
+Client Flow -
+socket()
+connect()
+send()
+read()
+close()
+*/
+
+/*
 ** TCP sockets are used in **:
 Web servers
 Database servers

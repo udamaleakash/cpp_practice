@@ -62,6 +62,11 @@ public:
     }
 };
 
+// Loan(const Loan &l)            - copy constructor
+// Loan &operator=(const Loan &l) - copy assignment operaator
+// Loan(Loan &&l) noexcept        - Move constructor
+// Loan &operator=(Loan &&l) noexcept - Move Assignment operator
+
 int main()
 {
     Loan l1;
@@ -74,7 +79,7 @@ int main()
     return 0;
 }
 
-// ********* RAII *******
+// ******** RAII *******
 /* RAII is a C++ programming technique where resource management is tied to object lifetime using constructors and destructors.
 
 Resource like memory, file, or lock is acquired in an object’s constructor and released in its destructor. Because the destructor runs automatically when the object goes out of scope
@@ -118,7 +123,7 @@ error happens
 
 */
 
-// ********* Stack vs Heap ******** 
+// ********* Stack vs Heap ********
 /* Stack Memory
 
 Stack memory is:
@@ -144,7 +149,7 @@ Here x is stored in stack memory.
 When function ends:
 memory automatically removed
 
-// Heap Memory 
+// Heap Memory
 
 Heap memory is:
 
