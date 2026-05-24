@@ -1,0 +1,326 @@
+**Self Introduction**
+
+“Hello Sir/Madam,
+
+My name is Akash Udamale. I belongs from Akole, Dist. Ahilyanagar.
+I completed my Bachelor of Engineering in Computer Engineering from Amrutvahini College of Engineering, sangmner in 2022.
+I have around 3 years of experience in C/C++ application development on Linux platforms.
+Currently, I am working at Kimaya Infotech Pvt Ltd, where I work on Core Banking System (CBS) applications in the banking domain.
+I worked on mainly modules like Reconciliation, CTS Clearing, Web Email Statements, and RBI Report Generation. I also work on backend development, transaction processing, production bug fixing, memory issue debugging, and multipacket handling.
+Technically, I have experience with C, C++, OOPS, STL, multithreading, Linux, GDB, DDD, and file handling.
+I am now looking for an organization to give me opportunity where I can improve my backend and C++ development skills while contributing to challenging projects like as your organization.”
+Thank You.
+
+
+**Project**
+project introduction
+
+“I have worked for around 3 years in Banking Domain software development on a Core Banking System (CBS) application using C/C++ and Linux.
+
+My work mainly involved developing and maintaining banking modules like Reconciliation, CTS Clearing, Web Email Statement generation, RBI report generation, transaction processing, and banking forms development.
+
+I also worked on production issue debugging, memory optimization, multipacket handling issues, and improving application reliability.
+
+Along with development, I handled bug fixing, report generation logic, getter/setter-based data models, and backend transaction workflows.”
+
+Short//
+Sample Answer
+
+I worked on a Core Banking System developed in C/C++ on Linux platform.
+My responsibilities included developing banking modules like reconciliation, clearing process, report generation, transaction validation, and debugging production issues.
+I worked on STL, file handling, multithreading, memory optimization, and Linux debugging tools like GDB and DDD.
+I also handled production bug fixing, performance optimization, and enhancement tasks.
+
+//
+
+
+What is reconciliation?”
+Answer->
+
+“Reconciliation is the process of matching financial transactions between different banking systems to ensure data consistency and transaction accuracy.
+It helps identify missing, duplicate, failed, or mismatched transactions.”
+
+CTS - Cheque Truncation system
+-> 
+“I worked on CTS Clearing modules used for cheque processing and clearing workflows.
+The system handled cheque transaction validation, status processing, clearing flow management, and report generation.”
+
+Q1. 1. Explain Your Role in the Project
+Interview Answer
+
+My role was Software Engineer in the CBS application team.
+
+Responsibilities:
+
+Developing banking modules in C/C++
+Enhancing existing functionalities
+Production issue debugging
+Database/file processing
+Transaction reconciliation logic
+Memory leak fixing
+Linux deployment support
+Report generation
+Code optimization and maintenance
+
+I also coordinated with testing and support teams to analyze production issues and deliver fixes.
+
+Q2. What Challenges Did You Face in Project?
+
+Challenge 1 — Performance Issue in Large File Processing
+Reconciliation process was taking too much time for large transaction files.
+Root cause: Nested loops caused high time complexity.
+old logic: 
+for(i=0; i<n; i++)
+{
+    for(j=0; j<n; j++)
+    {
+        // matching logic
+    }
+}
+
+sloution:
+You can store both files in map and compare using keys.
+This completely avoids nested loops and makes reconciliation cleaner.
+
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    // File A Transactions
+    map<string, int> fileA;
+
+    fileA["TXN1001"] = 500;
+    fileA["TXN1002"] = 700;
+    fileA["TXN1003"] = 900;
+
+    // File B Transactions
+    map<string, int> fileB;
+
+    fileB["TXN1002"] = 700;
+    fileB["TXN1003"] = 900;
+    fileB["TXN1004"] = 1000;
+
+    // Reconciliation Logic
+    map<string, int>::iterator it;
+
+    for (it = fileA.begin(); it != fileA.end(); ++it)
+    {
+        // Search same transaction in File B
+        if (fileB.find(it->first) != fileB.end())
+        {
+            cout << it->first << " Matched" << endl;
+        }
+        else
+        {
+            cout << it->first << " Missing in File B" << endl;
+        }
+    }
+
+    return 0;
+}
+
+New logic using map gives:
+
+Direct lookup by key
+Faster searching
+Cleaner code
+Better scalability
+
+“In reconciliation, both transaction files were large, so nested loop comparison caused performance issues.
+I redesigned the solution using STL maps for both files, where transaction ID was used as the key.
+This allowed direct key-based lookup instead of repeated iteration, reducing complexity and improving reconciliation speed significantly.”
+
+“Why map and not vector?”
+-> vector requires linear search
+map provides fast lookup using tree structure
+Better for reconciliation/search-heavy systems
+
+
+You can additionally say:
+
+“If ordering is not required, unordered_map can further improve average lookup to O(1).”
+
+
+Banking applications require:
+
+High accuracy
+Data consistency
+Performance
+Security
+Large transaction handling
+Zero data loss.
+
+
+Challenge 2 — Memory Leak Issue
+Situation
+
+During reconciliation processing, application memory usage continuously increased and system became slow after processing large transaction files.
+
+Root Cause
+
+We found dynamically allocated memory was not released properly in some transaction-processing loops.
+Transaction *txn = new Transaction();
+
+// processing
+
+// delete missing
+
+This caused memory leaks during bulk transaction processing.
+
+How You Fixed It
+
+I analyzed the issue using GDB and manual log tracing.
+Then I identified objects allocated using new without corresponding delete.
+
+Fixed code:
+
+Transaction *txn = new Transaction();
+
+// processing
+
+delete txn;
+txn = NULL;
+
+
+Q.Why should we hire you?
+->
+I have practical experience in C/C++ application development in banking domain.
+I have worked on real-time production systems, debugging, reconciliation modules, performance optimization, Linux development, and issue fixing.
+I am comfortable with problem solving, memory management, STL, and production support activities.
+
+
+***Random Question answers**
+stack vs heap
+->
+Important Interview Line
+
+Stack memory is automatically managed and fast.
+Heap memory is dynamically allocated and manually managed.
+
+
+
+****
+
+smart pointers -->
+
+1. What is a Smart Pointer?
+
+A smart pointer is a C++ object that manages the lifetime of dynamically allocated memory automatically.
+
+It helps avoid:
+
+Memory leaks
+Dangling pointers
+Manual delete
+Double free issues
+
+What is unique_ptr?
+
+unique_ptr provides:
+
+Single ownership
+Only one pointer can own the object
+
+Cannot copy.
+e.g. #include <iostream>
+#include <memory>
+
+using namespace std;
+
+int main()
+{
+    unique_ptr<int> p1(new int(100));
+
+    cout << *p1 << endl;
+
+    return 0;
+}
+
+
+Q. Why can't unique_ptr be copied?
+
+Because only one owner is allowed.
+
+Q. How to transfer ownership in unique_ptr?
+
+Using move().
+
+
+**. What is shared_ptr?
+
+shared_ptr allows:
+
+Multiple pointers to share ownership
+
+Uses:
+
+Reference counting
+
+Memory is deleted only when count becomes zero.
+
+
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
+int main()
+{
+    shared_ptr<int> p1(new int(100));
+
+    shared_ptr<int> p2 = p1;
+
+    cout << p1.use_count() << endl;
+
+    return 0;
+}
+
+What is weak_ptr?
+
+weak_ptr is used with shared_ptr.
+
+It:
+
+Does NOT increase reference count
+Prevents circular dependency
+
+Problem:
+
+A points to B
+B points to A
+
+Reference count never becomes 0.
+
+Result:
+
+Memory leak
+
+class B;
+
+class A
+{
+public:
+    weak_ptr<B> ptr;
+};
+
+class B
+{
+public:
+    shared_ptr<A> ptr;
+};
+
+weak_ptr does not increase reference count
+memory is released properly
+
+
+// shared ptr works on reference count of pointer ends it willl 0 rhen delete ptr.
+// weak ptr use with shared ptr when shared ptr Reference count NOT 0 then issue like memory leak so use weak_ptr;
+
+
+//unique_ptr for ownership-based objects and shared_ptr where multiple modules accessed shared resources.
+
+

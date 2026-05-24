@@ -1,0 +1,304 @@
+Static Casting and Dynamic Casting
+
+1) Static Casting 
+-> Static cast is an explicit, done at compile time conversion.
+- Basic datatype conversion
+syntax:
+static_cast<new_type>(expression)
+e.g. 
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double x = 10.75;
+
+    int y = static_cast<int>(x);
+
+    cout << y;
+
+    return 0;
+}
+// if i do int y = (int)x; // also works but
+C-style casting works, but static_cast is preferred in modern C++ because it is type-safe, readable, compile-time checked, and avoids accidental unsafe conversions
+safe for upcasting.     
+
+conclude: 
+static_cast is used for compile-time type conversion in C++. It is commonly used for datatype conversion and inheritance-based casting. It is faster but does not perform runtime checking, so downcasting using static_cast can be unsafe.
+
+2) dynamic_cast
+it is use for safe untime conversion.
+mainly use in runtime polymorphism.
+
+Base class must contain at least one virtual function.
+syntax: dynamic_cast<new_type>(expression)
+
+safe downcasting:
+#include <iostream>
+using namespace std;
+
+class Base
+{
+public:
+    virtual void show()
+    {
+        cout << "Base class";
+    }
+};
+
+class Derived : public Base
+{
+public:
+    void display()
+    {
+        cout << "\nDerived display";
+    }
+};
+
+int main()
+{
+    Base *b = new Derived();
+
+    Derived *d = dynamic_cast<Derived*>(b);
+
+    if (d != NULL)
+    {
+        d->display();
+    }
+    else
+    {
+        cout << "Casting Failed";
+    }
+
+    return 0;
+}
+
+Failed casting e.g.
+#include <iostream>
+using namespace std;
+
+class Base
+{
+public:
+    virtual void show() {}
+};
+
+class Derived : public Base
+{
+};
+
+class Test : public Base
+{
+};
+
+int main()
+{
+    Base *b = new Test();
+
+    Derived *d = dynamic_cast<Derived*>(b);
+
+    if (d == NULL)
+    {
+        cout << "Casting Failed";
+    }
+
+    return 0;
+}
+
+
+Easy Interview Answer
+static_cast
+
+static_cast is used for compile-time type conversion. It is fast but does not perform runtime checking.
+
+dynamic_cast
+
+dynamic_cast is used for safe runtime type conversion in inheritance. It checks object type during runtime and works only with polymorphic classes.
+
+
+***Question and Answer***
+
+1. C++ Core Questions
+Basic to Intermediate
+
+Q1) What is the difference between stack and heap memory?
+-> Stack memory is automatically managed and mainly used for local variables and function calls. It is very fast but limited in size. Heap memory is dynamically allocated using new or malloc and must be manually deallocated using delete or free. Heap is flexible and suitable for runtime memory allocation, but improper handling can cause memory leaks and dangling pointers.
+
+Q2) What is shallow copy and deep copy?
+->Shallow copy copies pointer addresses, so multiple objects share same memory location. This can cause issues like double deletion and data corruption. Deep copy allocates separate memory and copies actual data, making objects independent and safe. In real-time projects involving dynamic memory handling, we generally implement deep copy using a custom copy constructor and assignment operator.
+
+Q3) What is copy constructor?
+->A copy constructor is a special constructor in C++ used to create a new object as a copy of an existing object. It is called when an object is initialized using another object of the same class. By default, the compiler provides a copy constructor, but for classes using dynamic memory, we usually implement our own copy constructor to perform deep copy and avoid shallow copy issues.
+
+Q4) Why do we use virtual functions?
+->Virtual functions are used to achieve runtime polymorphism in C++. They allow us to call the derived class function using a base class pointer or reference. This helps in writing flexible, extensible, and loosely coupled code, especially in large-scale applications and framework-based designs.
+
+Q5) Difference between compile-time and runtime polymorphism?
+-> Compile-time polymorphism is achieved using function or operator overloading, where the compiler resolves the function call during compilation. Runtime polymorphism is achieved using virtual functions and inheritance, where the correct overridden function is selected at runtime using base class pointers or references. Compile-time polymorphism is faster, while runtime polymorphism is more flexible and commonly used in scalable real-world applications.
+
+Q6) What is function overloading vs overriding?
+-> Function overloading means multiple functions with the same name but different parameters within the same class. It is an example of compile-time polymorphism. Function overriding means redefining a base class virtual function in the derived class with the same signature. It is an example of runtime polymorphism.
+
+Q7) What is constructor overloading?
+-> Constructor overloading means defining multiple constructors in the same class with different parameter lists. It allows objects to be initialized in different ways depending on the requirement. It is an example of compile-time polymorphism.
+
+Q8) What is dynamic memory allocation?
+-> Dynamic memory allocation is the process of allocating memory during runtime using heap memory. In C++, we use new and delete operators for this purpose. It is useful when the memory requirement is not fixed at compile time, such as in dynamic data structures, file handling, networking, and large-scale applications. Proper memory deallocation is important to avoid memory leaks and dangling pointers.
+
+Q9) Difference between new/delete and malloc/free?
+-> new and delete are C++ operators used for dynamic memory allocation and deallocation, while malloc and free are C library functions. The major difference is that new calls constructors and delete calls destructors, whereas malloc and free only allocate and release raw memory without object initialization or cleanup.
+
+Q10) What is a memory leak?
+-> A memory leak occurs when dynamically allocated memory is not released after use. As a result, memory remains occupied even though the program no longer needs it. Over time, memory leaks can increase memory consumption, reduce application performance, and may eventually crash the system.
+
+Q11) What is dangling pointer?
+-> A dangling pointer is a pointer that refers to memory that has already been freed or gone out of scope. Accessing such pointers causes undefined behavior, crashes, or garbage values. Dangling pointers commonly occur after using delete, returning addresses of local variables, or accessing objects after scope completion. To avoid them, we should reset pointers to nullptr and prefer smart pointers in modern C++ applications.
+e.g.
+    int main()
+    {int *p = new int(10);
+    delete p;
+    cout << *p; // here will see garbage value to avoid use p = nullptr or smart ptr
+    return 0;}
+
+Q12) What is smart pointer?
+-> Smart pointers are C++ library classes that automatically manage dynamic memory and help prevent memory leaks and dangling pointers. They automatically release memory when the object is no longer needed. Smart pointers are part of modern C++ and follow the RAII principle.
+use header file : #include <memory>
+Why Smart Pointers Needed?
+-Problems with raw pointers:
+-Memory leaks
+-Dangling pointers
+-Double delete
+-Manual memory management
+
+Q13) Difference between shared_ptr, unique_ptr, weak_ptr?
+->
+ a) unique_ptr
+- Single ownership
+  Only one pointer owns the object.
+  Cannot share ownership.
+  int main()
+{
+    unique_ptr<int> p1(new int(10));
+    cout << *p1;
+    return 0;
+}
+Key Features:
+Single ownership
+Automatic cleanup
+Lightweight and fast
+Cannot copy
+
+here copy not allowed but move allowed like,
+unique_ptr<int> p2 = move(p1); // Ownership transferred.
+
+Used when:
+One owner required
+
+b) shared_ptr:
+- Multiple ownership
+- Multiple pointers can share same object.
+Uses:
+Reference counting
+int main()
+{
+    shared_ptr<int> p1(new int(100));
+    shared_ptr<int> p2 = p1;
+    cout << p1.use_count();
+    return 0;
+}// 2
+- above Two smart pointers sharing same object
+
+Key Features
+Shared ownership
+Reference count maintained
+Memory deleted automatically when count becomes zero
+
+Used when:
+Shared resources
+
+c) weak_ptr
+Non-owning smart pointer.
+Works with:
+shared_ptr
+Does NOT increase reference count.
+e.g. 
+#include <memory>
+shared_ptr<int> sp(new int(50));
+weak_ptr<int> wp = sp;
+
+To solve, Circular dependency problem
+means when, If both use shared_ptr, Reference count never becomes zero
+Memory leak occurs
+so use weak_ptr on one side.
+e.g.
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
+class B;
+
+class A
+{
+public:
+    shared_ptr<B> ptrB;
+
+    ~A()
+    {
+        cout << "A Destructor Called" << endl;
+    }
+};
+
+class B
+{
+public:
+    weak_ptr<A> ptrA; // before here shared_ptr use so, boths ref. count increse never become zero cause memory leaked happen, object never destroyed. But use weak_ptr does NOT increase reference count. 
+    //So memory releases properly.
+    /* hence we say weak_ptr Does Not Own Memory It only:Observes object */
+
+    ~B()
+    {
+        cout << "B Destructor Called" << endl;
+    }
+};
+
+int main()
+{
+    shared_ptr<A> a(new A());
+    shared_ptr<B> b(new B());
+
+    a->ptrB = b;
+    b->ptrA = a;
+    return 0;
+}
+/* weak_ptr is used with shared_ptr to avoid circular references. It does not increase the reference count of the object. When two objects reference each other using only shared_ptr, memory leaks can occur because the reference count never becomes zero. weak_ptr solves this problem by keeping a non-owning reference to the object. */
+
+Q14) What is RAII?
+-> Resource Acquisition Is Initialization
+RAII stands for Resource Acquisition Is Initialization. It is a C++ design principle where resources are acquired in constructors and released automatically in destructors. This ensures proper cleanup and exception safety. RAII is widely used in modern C++ through smart pointers, STL containers, file streams, and lock management to prevent memory leaks and improve resource handling.
+
+Without RAII:
+-Manual cleanup required
+-Memory leaks possible
+-Exception handling difficult
+
+RAII provides:
+-Automatic cleanup
+-Safer code
+-Better resource management
+
+
+RAII principle-
+Constructor: Allocated memory
+Destructor: Automatically released memory
+
+what is Rule of 3/5
+-> Rule of 3 states that if a class manages dynamic resources and defines any one of destructor, copy constructor, or copy assignment operator, then it should probably define all three.
+Rule of 5 extends this concept in C++11 by additionally including move constructor and move assignment operator for efficient resource transfer and performance optimization.
+
+Q15) Explain const correctness.
+Q16) What is static keyword in C++?
+Q17) Difference between class and struct?
+Q18) What is object slicing?
+Q19) What is vtable/vptr?
+Q20) Why destructor should be virtual?

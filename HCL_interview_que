@@ -1,0 +1,131 @@
+
+#include <iostream>
+using namespace std;
+
+void sort_arr(int arr[], int len){
+    
+    int l=0;
+    int m=0;
+    int h =len -1;
+    
+    
+    while(m<=h){
+        
+        if(arr[m]== 0){
+            
+            if(arr[l] > arr[m]){
+                int t = arr[l];
+                arr[l]= arr[m];
+                arr[m]= t;
+            }
+             l++;
+             m++;
+        }
+        else if(arr[m] == 1){
+            m++;
+            
+        }
+        else{
+            if(arr[m] > arr[h]){
+                int t2 = arr[m];
+                arr[m]= arr[h];
+                arr[h]= t2;
+            }
+            h--;
+        }
+        
+      
+        
+    }
+    for(int i=0;i<len;i++){
+        cout<<arr[i]<<" "<<endl;
+    }
+}
+
+int main()
+{
+    int arr[]={0, 1, 1, 1, 2, 0, 2, 2, 0, 1, 0};
+    int len = sizeof(arr)/sizeof(arr[0]);
+    
+    sort_arr(arr, len);
+    return 0;
+}
+
+
+
+// 2. rerverse string using recursion
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<string>
+using namespace std;
+
+void reverse_string(string str, int i){
+    
+    if(i<0){
+     return;
+    }
+cout<<str[i];
+reverse_string(str, i-1);
+}
+
+int main() {
+    string str1 = "Account";
+reverse_string(str1, str1.length()-1);
+    return 0;
+}
+
+//Q3.  Implement dynmaic casting
+
+#include <iostream>
+using namespace std;
+
+class Base
+{
+public:
+    virtual void show()
+    {
+        cout << "Base class" << endl;
+    }
+};
+
+class Derived : public Base
+{
+public:
+    void show()
+    {
+        cout << "Derived class" << endl;
+    }
+
+    void display()
+    {
+        cout << "Derived class function" << endl;
+    }
+};
+
+int main()
+{
+    Base *b;
+    Derived d;
+
+    b = &d;
+
+    b->show(); // Runtime polymorphism
+
+    // Dynamic Casting
+    Derived *dp = dynamic_cast<Derived *>(b);
+
+    if (dp != NULL)
+    {
+        dp->display();
+    }
+    else
+    {
+        cout << "Casting failed" << endl;
+    }
+
+    return 0;
+}
+
+
+
