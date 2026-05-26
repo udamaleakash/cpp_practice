@@ -2,80 +2,84 @@
 #include <iostream>
 using namespace std;
 
-void sort_arr(int arr[], int len){
-    
-    int l=0;
-    int m=0;
-    int h =len -1;
-    
-    
-    while(m<=h){
-        
-        if(arr[m]== 0){
-            
-            if(arr[l] > arr[m]){
+void sort_arr(int arr[], int len)
+{
+
+    int l = 0;
+    int m = 0;
+    int h = len - 1;
+
+    while (m <= h)
+    {
+
+        if (arr[m] == 0)
+        {
+
+            if (arr[l] > arr[m])
+            {
                 int t = arr[l];
-                arr[l]= arr[m];
-                arr[m]= t;
+                arr[l] = arr[m];
+                arr[m] = t;
             }
-             l++;
-             m++;
-        }
-        else if(arr[m] == 1){
+            l++;
             m++;
-            
         }
-        else{
-            if(arr[m] > arr[h]){
+        else if (arr[m] == 1)
+        {
+            m++;
+        }
+        else
+        {
+            if (arr[m] > arr[h])
+            {
                 int t2 = arr[m];
-                arr[m]= arr[h];
-                arr[h]= t2;
+                arr[m] = arr[h];
+                arr[h] = t2;
             }
             h--;
         }
-        
-      
-        
     }
-    for(int i=0;i<len;i++){
-        cout<<arr[i]<<" "<<endl;
+    for (int i = 0; i < len; i++)
+    {
+        cout << arr[i] << " " << endl;
     }
 }
 
 int main()
 {
-    int arr[]={0, 1, 1, 1, 2, 0, 2, 2, 0, 1, 0};
-    int len = sizeof(arr)/sizeof(arr[0]);
-    
+    int arr[] = {0, 1, 1, 1, 2, 0, 2, 2, 0, 1, 0};
+    int len = sizeof(arr) / sizeof(arr[0]);
+
     sort_arr(arr, len);
     return 0;
 }
-
-
 
 // 2. rerverse string using recursion
 
 // Online C++ compiler to run C++ program online
 #include <iostream>
-#include<string>
+#include <string>
 using namespace std;
 
-void reverse_string(string str, int i){
-    
-    if(i<0){
-     return;
+void reverse_string(string str, int len)
+{
+
+    if (len < 0)
+    {
+        return;
     }
-cout<<str[i];
-reverse_string(str, i-1);
+    cout << str[len];
+    reverse_string(str, len - 1);
 }
 
-int main() {
+int main()
+{
     string str1 = "Account";
-reverse_string(str1, str1.length()-1);
+    reverse_string(str1, str1.length() - 1);
     return 0;
 }
 
-//Q3.  Implement dynmaic casting
+// Q3.  Implement dynmaic casting
 
 #include <iostream>
 using namespace std;
@@ -126,6 +130,3 @@ int main()
 
     return 0;
 }
-
-
-

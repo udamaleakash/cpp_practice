@@ -1,0 +1,196 @@
+Explain your project architecture.
+
+“I worked on a Core Banking System (CBS) Reconciliation Module developed in C++ on Linux.
+The architecture was mainly divided into 3 layers:
+
+UI Layer (FLTK Client)
+Designed windows like Reconciliation, One-to-Many RC, Un-Reconciliation, RC Rule Wise window, Import, Maintenance, etc.
+Implemented callbacks, validations, table population, search filters, and keyboard shortcut handling.
+Business Logic Layer
+Implemented reconciliation logic between LTRAN (Ledger Transaction) and STRAN (Statement Transaction).
+Supported:
+One-to-One reconciliation
+One-to-Many reconciliation
+Internal reconciliation
+Auto reconciliation using cheque number + amount matching
+Rule-based reconciliation using regex and matching positions
+Added validations for balance matching and duplicate reconciliation prevention.
+Data Layer
+Worked with transaction files like:
+LTRAN
+STRAN
+RBALANCE
+RCADVISE
+Used indexed file operations and optimized searching for large transaction data.
+Rebuild logic updated balances after reconciliation/unreconciliation.”
+
+Based on the uploaded RC manual, your module handled reconciliation workflows, rebuild balance, one-way RC, one-to-many RC, and rule-based matching.
+
+What was your exact role?
+
+“My role was full-stack module development in C++.
+
+I worked on:
+
+Designing FLTK windows and table handling
+Writing reconciliation business logic
+Implementing server-side validation and transaction mapping
+Debugging production issues using GDB and DDD
+Optimizing transaction search performance
+Fixing memory and crash issues
+Supporting deployment and production issue resolution
+
+I specifically worked on the Reconciliation module and RC Rule Wise window where transactions were matched based on configurable rules like:
+
+amount
+cheque number
+regex pattern
+matching position
+one-to-many mapping.”
+Biggest challenge you faced?
+
+“One major challenge was handling reconciliation for huge transaction data where statement records and ledger records were not matching exactly.
+
+Many bank statements had:
+
+extra spaces
+different narration formats
+partial cheque numbers
+inconsistent transaction descriptions
+
+To solve this:
+
+I implemented rule-based reconciliation
+Added regex matching support
+Added configurable match positions
+Optimized filtering logic
+
+This significantly improved automatic reconciliation accuracy and reduced manual reconciliation effort.”
+
+Production issue you fixed?
+
+“In production, users reported that some transactions were getting reconciled multiple times.
+
+Root cause:
+
+Concurrent reconciliation requests were updating the same records without proper validation.
+
+Fix:
+
+Added reconciliation status validation before update
+Added proper file locking/check conditions
+Ensured atomic update for both LTRAN and STRAN
+
+After fix:
+
+Duplicate reconciliation stopped
+Data consistency improved.”
+Memory issue you debugged?
+
+“One issue was increasing memory usage during repeated transaction searches.
+
+Root cause:
+
+Dynamically allocated buffers and table objects were not getting released properly after search refresh.
+
+Debugging:
+
+Used GDB and runtime analysis
+Tracked repeated allocations inside table population logic
+
+Fix:
+
+Released old buffers before reload
+Reused STL containers instead of repeated allocations
+Reduced unnecessary copying of transaction records
+
+Result:
+
+Memory usage became stable even after continuous operations.”
+Performance optimization you did?
+
+“In reconciliation search, loading transactions for large date ranges was slow.
+
+Problem:
+
+Full file scanning was happening repeatedly.
+
+Optimization done:
+
+Reduced redundant file reads
+Added filtered searching based on:
+account number
+date range
+reconciliation status
+Reused cached transaction data
+Optimized loops and string comparisons
+
+Result:
+
+Search and reconciliation response time improved noticeably for large accounts.”
+Any crash debugging experience?
+
+“Yes.
+
+One production crash happened during reconciliation table refresh.
+
+Reason:
+
+Null pointer access after deleting table row objects.
+Some callbacks were accessing invalid memory.
+
+Debugging:
+
+Used GDB backtrace
+Identified invalid pointer dereference
+
+Fix:
+
+Added null checks
+Corrected object lifetime handling
+Reset pointers after deletion
+
+After deployment, crash issue was resolved.”
+
+How did you improve existing code?
+
+“I improved the old reconciliation code by:
+
+Replacing repeated logic with reusable functions
+Using STL containers instead of manual array handling
+Improving naming and modularity
+Reducing duplicate validations
+Adding proper error handling and logs
+Optimizing search/filter logic
+
+This improved:
+
+maintainability
+readability
+debugging
+performance.”
+Explain one difficult bug you solved.
+
+“One difficult bug was balance mismatch after unreconciliation.
+
+Issue:
+
+After cancelling reconciliation, balances in RBALANCE, LTRAN, and STRAN became inconsistent.
+
+Root cause:
+
+Rebuild logic was not recalculating balances correctly from the unreconciliation date.
+
+Solution:
+
+Implemented proper rebuild traversal from affected transaction date
+Updated running balances sequentially
+Synced balance updates across all related files
+
+After fix:
+
+Balance mismatches were resolved
+Financial data became consistent again.”
+Extra strong interview line
+
+“Since this was a banking domain application, accuracy and data consistency were very critical. Even small reconciliation issues could impact financial reporting, so I focused heavily on validation, debugging, and reliability.”

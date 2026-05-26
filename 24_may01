@@ -309,47 +309,82 @@ Q19) What is vtable/vptr?
 Q20) Why destructor should be virtual?
 
 2. OOPS Questions
-Explain all OOPS concepts.
-What is abstraction?
-Real-time example of encapsulation?
-Multiple inheritance issue?
-What is diamond problem?
-What is pure virtual function?
-What is abstract class?
-Interface vs abstract class?
-When do you use inheritance in project?
-What design patterns used in your project?
+Q21) Explain all OOPS concepts.
+Q22) What is abstraction?
+Q23) Real-time example of encapsulation?
+Q24) Multiple inheritance issue?
+Q25) What is diamond problem?
+Q26) What is pure virtual function?
+Q27) What is abstract class?
+Q28) Interface vs abstract class?
+Q29) When do you use inheritance in project?
+
+Q30) What design patterns used in your project?
+-> /* In our CBS project, we mainly worked with layered architecture and concepts similar to Factory and Singleton patterns. Singleton-like behavior was used for shared modules such as database connections and logging, while Factory-style object creation was useful for handling different banking transaction/account types dynamically. Since the application involved client-server communication and UI updates, the design also followed modular and loosely coupled architecture principles. */
+
+
 
 3. STL Questions
-Difference between vector and list?
-Difference between map and unordered_map?
-When use set vs vector?
-Time complexity of map?
-Why unordered_map is faster?
-Difference between resize and reserve?
-Iterator invalidation?
-What is priority_queue?
-Difference between vector and deque?
-Internally how vector works?
+Q31) Difference between vector and list?
+Q32) Difference between map and unordered_map?
+Q33) When use set vs vector?
+Q34) Time complexity of map?
+Q35) Why unordered_map is faster?
+Q36) Difference between resize and reserve?
+Q37) Iterator invalidation?
+Q38) What is priority_queue?
+Q39) Difference between vector and deque?
+Q40) Internally how vector works?
 
 4. Coding Questions
-Easy-Mid Level
-Reverse string without STL.
-Reverse linked list.
-Find duplicate in array.
-Sort 0s,1s,2s.
-Check palindrome.
-Frequency count using map.
-Remove duplicates from vector.
-Find missing number.
-Implement stack using array.
-Implement queue using linked list.
+Q41) Easy-Mid Level
+Q42) Reverse string without STL.
+Q43) Reverse linked list.
+Q44) Find duplicate in array.
+Q45) Sort 0s,1s,2s.
+Q46) Check palindrome.
+Q47) Frequency count using map.
+Q48) Remove duplicates from vector.
+Q49) Find missing number.
+Q50) Implement stack using array.
+Q51) Implement queue using linked list.
 
 5. Pointer Questions
-Difference between pointer and reference?
-Pointer to pointer?
-Void pointer?
-Function pointer?
+Q)Difference between pointer and reference?
+-> Pointer stores memory address and can be reassigned or NULL. Reference is an alias of an existing variable and cannot be NULL or reassigned after initialization.
+
+Q) Pointer to pointer?
+-> A pointer to pointer is a pointer variable that stores the address of another pointer. It is mainly used in dynamic memory management, multidimensional arrays, function arguments, and modifying pointers inside functions.
+e.g. **p
+
+Q) Void pointer?
+-> A void pointer is a generic pointer that can store the address of any datatype.
+e.g. void *ptr
+
+
+Q)Function pointer?
+-> A function pointer is a pointer that stores the address of a function.
+
+e.g.
+ #include <iostream>
+
+using namespace std;
+
+int add(int a, int b)
+{
+    return a + b;
+}
+
+int main()
+{
+    int (*fp)(int, int);
+
+    fp = add;
+
+    cout << fp(10, 20);
+
+    return 0;
+}
 Null pointer vs dangling pointer?
 What happens when deleting null pointer?
 Why double free is dangerous?

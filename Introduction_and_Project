@@ -91,7 +91,8 @@ using namespace std;
 int main()
 {
     // File A Transactions
-    map<string, int> fileA;
+    map<string, int> fileA;// allowed unique key
+    multimap<string, int>map1; // allowed duplicate key
 
     fileA["TXN1001"] = 500;
     fileA["TXN1002"] = 700;
