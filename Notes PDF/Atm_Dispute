@@ -1,0 +1,189 @@
+
+		view     : AtmDispute.h, AtmDispute.cxx
+		app_code : atmDispute.cxx
+		cserver  : atmDispute.cxx
+		krdb     : krdb_actTurnover.cxx (find_atm_dispute)
+		tran no  : NACH_SCR (642)
+
+		Menu -> Head Office -> E-Module -> ATM Dispute Report
+
+	IMP :
+		- folder atm_dispute should be present at path "/spool/Import/"
+		- this directory contain another folder with name yyyymm, which in turn contains another
+			 date wise directories as yyyy-mm-dd
+		- these sudirectories again contain one or two directory/directories depend on refund
+			 record (cycle1 and/or cycle2)
+		- all the records in cycle1 and/or cycle2 directory are supposed to recieve refund.
+		- single batch for all records in parent directory (i.e directory yyyymm)
+			but cotra will be cycle wise
+		- NOTE : This window is allowed to head office only.
+
+	 IMPORT_PATH_ATM "/spool/Import/atm_dispute"
+---------------------------------------------------------------------------------------------------
+
+	view :
+		- Choice is given with ATM/IMPS/UPI/BBPS options, user has to select one option
+		- then using year and month entered, program starts parsing directory of the same name
+				as value entered. (name = yyyymm)
+		- if directory is present, then parse it for available records and create a cycle wise
+			scroll, in which amount will get credited to accounts mentioned in records and total
+			amount of single cycle get debited from NPCI ecommerce GL account.
+
+	app_code :
+		ShortInt AtmDispute::atmDispute_rh(KEntry *e, struct server_buffer *sbuf)
+				- it shows the result scroll/record wise
+
+		ShortInt AtmDispute::validate(KEntry *e, ShortInt flag)
+				- to validate data before sending to server
+				- if wnd->r_counter == 0 then it shows error " No Record To Refund"
+				- if request is for deletion of contra no data in batch no. then it shows error
+					"Batch No. is Blank."
+
+		ShortInt AtmDispute::clear(KEntry *e)
+				- clear all fields on window
+
+		ShortInt AtmDispute::pass(KEntry *e)
+				- fill the buffer using fill_buffer() and send it to server to refund
+
+		void AtmDispute::fill_buffer(ShortInt Opcode, ShortInt *j, char **ptrbuff, unsigned long *buffsize)
+				- fill opcode, no of records and all records from vector to given buffer
+
+		void AtmDispute::clear_table()
+				- clear table and set r_counter and row_no_ to 0
+
+		void AtmDispute::init_dispDtl(struct Dispute_Detail *dispDtl)
+				- to init dispDtl
+
+		void AtmDispute::add_npciContra(double total_contra, char *actno, char *cycle)
+				- shows debited amount after every cycle
+				- amount to be debited is equal to the total of amount credited in one cycle
+
+		ShortInt AtmDispute::check_csv(char *fpath, char *actno)
+				- parse directory structure and show all scroll for amount to be credited and
+				debited with the help of show_file() and add_npciContra() functions
+
+		ShortInt AtmDispute::show_file (KInput *fld)
+				- if ATMPARA is set then it parse directory for showing records
+
+		void parse_date(char *token, char *sdt, bool flag = false)
+				- to convert given date in b_date structure
+
+		void AtmDispute::show_file(char *fname, double *total_contra, char *cycle)
+				- it opens the given file, parse it line by line and add record into
+				table using addtotable ()
+	
+		void AtmDispute::addtotable(KEntry *e)
+				- add data into table as well as vector
+				- increament row number
+
+		ShortInt AtmDispute::rowblank(KEntry *entry, int r)
+				- check whether given row is blank or not
+
+		void AtmDispute::show_Actno (Fl_Widget *w, void *d)
+				- it shows account no. from the selected row
+				- allows to modify account no.
+				- validate modified no. and display it's name
+
+		static void clear_handler(void *data)
+				- clears window and set isclear = true;
+
+		ShortInt AtmDispute::find0(KEntry *e)
+				- by clicking on find button or hitting F4 it displays one window which will
+				ask for date and batch no to find
+				- after inserting values, it finds transfer scroll with first key and if
+				result is OK then call find1() otherwise shows error record not found
+
+		void AtmDispute::set_row_value(KEntry *e, ShortInt r)
+				- set values/record found using find() into given row.
+
+		void AtmDispute::set_value()
+				- read values recieved in ansbuf
+				- it finds transfer scroll, atmlog and del_scr for given batch
+
+		static void set_Value_handler(void*d) and set_value() :
+				- to set values found in find ()
+
+		ShortInt AtmDispute::find1(KEntry *entry) :
+				- using usr_id, brcode, tran_date, BATCH_NO find contra
+
+		ShortInt AtmDispute::revert(KEntry *e)
+				- to delete contra of ATM dispute which is refunded already.
+				- find cotra which you want to delete and press F10
+
+	cserver :
+			= static void add_res(struct result_buffer *resbf, char *rrn, ShortInt ret, char *scroll_no = NULL)
+				- it is used to add result into result buffer
+				- RRN, return code and scroll no are added into result buffer
+
+			= void init_dispDtl(struct Dispute_Detail *dispDtl)
+				- sets balnk values to all fields in Dispute_Detail object
+
+			= ShortInt validate_atmDispute(struct request_buffer *reqbf, struct result_buffer *resbf,
+					vector <struct Dispute_Detail> *v)
+				- it reads one shortInt named rowcount which indicates total no. of records sent from client side
+				- it sends error in following cases :
+					- if request is not from head office branch then it returns with error ONLY_HEAD_BR
+					- if user has no permission to PASS record, if not then returns with error ERR_USR_NPERMIT
+					- if record contains RRN then
+						- search related record in ATMLOG with the help of tsetl_dt, rrn, tr_amt_
+							if exact record not found then generate error
+						- if record found but account no. is not valid then generate error
+						- if (atoi(alog.ret_batch) > 0) means dispute is already given then generate error
+					- if record not found in ATMLOG
+					- if any record does not contain RRN and account no. is valid
+				- if flag = true means, record is valid then it get stored into vector
+				- finally after parsing every record if flag is false and vector contains any record
+					 then clear the vector and return error otherwise if flag is true then return with OK
+
+			= void update_atmLog(struct trnf_scr trscr, vector < struct Dispute_Detail > v)
+				- for every scroll in TRNF_SCR if tran_amt_dc == 'C', then find respective record in ATMLOG
+				- RRN is fetched from tran_part and transactino date from Dispute_Detail
+				- only successful transaction with msg_type = "0200" are considered for updation
+				- when a particular record from ATMLOG with above condition found, then modify following fields
+					memtozstr(trs.tran_amt, alog.rdue_amt, ellen [TRAN_AMT]);
+					- transaction date(dispute date) is copied into ret_date
+					- dispute report date is copied into rptdate
+					- dispute settlement date is copied into settle_dt
+					- dispute due date is copied into due_date
+					- transaction batch no. (Dispute batch no.) is copied into ret_batch
+					- lien_type indicates whether dispute is F/P (i.e Full / Partial)
+					- aquirer institution code is copied into sifsc code
+					- destination institution code is copied into difsc code
+					
+
+			= ShortInt add_atmDispute(struct request_buffer *reqbf, struct result_buffer *resbf)
+				- check whether buffer is valid or not using validate_atmDispute() function
+				- if valid then do following procedure else return with error
+				- if result buffer is not NULL then set OK(0) to indicate result is OK,
+					set error pointer which is initially 0 and increament size of result
+				- then record added into transfer scroll (TRNF_SCR)
+				- every record from vector added into scroll
+				- if amount is to be credited then
+					- narration will be "ECOR RRN DD/MM/YYYY"
+					- settle_date is copied into tdt
+				- if amount is to be debited then narration will be "RUPAY DISPUTE DD/MM/YYYY-cycle_no"
+				- add tranasfer scroll using add_trscroll() function
+				- batch no of first record is copied into batchno
+				- batch is passed using pass_batch_trasfer
+				- then atmlog is updated for every RRN using update_atmLog()
+
+			= ShortInt del_atmDispute(struct request_buffer *reqbf, struct result_buffer *resbf)
+				- it reads branch code, transaction date and batch no. from request buffer
+				- if result buffer is not NULL then set OK(0) to indicate result is OK,
+					set error pointer which is initially 0 and increament size of result
+				- check whether user has deletion permission, if not then returns with error ERR_USR_NPERMIT
+				- finds transfer scroll with first key
+				- if scroll is already deleted then return with error ALRDY_DEL
+				- else if transaction amount dc flag is 'C' then,
+					- read  rrn from tran_part of transaction ( trs.tran_part+5)
+					- with the help of cheque date and rrn find respective record from ATMLOG 
+					- if record with same date and rrn found, and message type is 0200 and response code is 00
+						then set following fields to blank.
+						RET_DATE,  RPTDATE, SETTLE_DT, DUE_DATE, RET_BATCH, LIEN_TYPE, SIFSCCODE, DIFSCCODE
+
+				- after modifying ATMLOG, again find transfer scroll and respective TRAN and
+					call del_trnf() function to delete transaction
+
+			= void atmDispute_handler(struct request_buffer *reqbf)
+				- depend on operation code it invokes either add_atmDispute or del_atmDispute
+					which in turn process request and send result.
