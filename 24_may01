@@ -118,6 +118,11 @@ dynamic_cast is used for safe runtime type conversion in inheritance. It checks 
 
 ***Question and Answer***
 
+*Questions to Ask Interviewer (For C++ Developer)
+-> 1) Can you please tell me more about the day-to-day responsibilities for this role?”
+2) What qualities or skills do you expect from a developer in this role during the first few months?
+
+
 1. C++ Core Questions
 Basic to Intermediate
 
@@ -302,3 +307,103 @@ Q17) Difference between class and struct?
 Q18) What is object slicing?
 Q19) What is vtable/vptr?
 Q20) Why destructor should be virtual?
+
+2. OOPS Questions
+Explain all OOPS concepts.
+What is abstraction?
+Real-time example of encapsulation?
+Multiple inheritance issue?
+What is diamond problem?
+What is pure virtual function?
+What is abstract class?
+Interface vs abstract class?
+When do you use inheritance in project?
+What design patterns used in your project?
+
+3. STL Questions
+Difference between vector and list?
+Difference between map and unordered_map?
+When use set vs vector?
+Time complexity of map?
+Why unordered_map is faster?
+Difference between resize and reserve?
+Iterator invalidation?
+What is priority_queue?
+Difference between vector and deque?
+Internally how vector works?
+
+4. Coding Questions
+Easy-Mid Level
+Reverse string without STL.
+Reverse linked list.
+Find duplicate in array.
+Sort 0s,1s,2s.
+Check palindrome.
+Frequency count using map.
+Remove duplicates from vector.
+Find missing number.
+Implement stack using array.
+Implement queue using linked list.
+
+5. Pointer Questions
+Difference between pointer and reference?
+Pointer to pointer?
+Void pointer?
+Function pointer?
+Null pointer vs dangling pointer?
+What happens when deleting null pointer?
+Why double free is dangerous?
+
+6. Linux / System Questions
+What is segmentation fault?
+How do you debug crashes?
+What is valgrind?
+Commands you use daily in Linux?
+What is grep?
+Difference between process and thread?
+What is deadlock?
+What is mutex?
+
+7. Multithreading Questions
+What is thread?
+Difference between process and thread?
+What is race condition?
+What is mutex?
+What is deadlock?
+How synchronization work?
+Thread-safe code meaning?
+
+8. Database Questions
+Difference between SQL and NoSQL?
+What is indexing?
+What is primary key?
+Difference between delete and truncate?
+Join types?
+
+
+9. Microservices / Backend Questions
+What are microservices?
+How services communicate?
+REST API meaning?
+What is JSON parsing?
+Explain request-response flow.
+What challenges faced in API integration?
+How handled invalid response?
+Explain serialization/deserialization.
+
+
+
+10. Project-Based Questions (Very Important)
+These reveal real experience.
+Explain your project architecture.
+What was your exact role?
+Biggest challenge you faced?
+Production issue you fixed?
+Memory issue you debugged?
+Performance optimization you did?
+Any crash debugging experience?
+How did you improve existing code?
+Explain one difficult bug you solved.
+How do you handle code review?
+
+
