@@ -320,7 +320,16 @@ Q28) Interface vs abstract class?
 Q29) When do you use inheritance in project?
 
 Q30) What design patterns used in your project?
--> /* In our CBS project, we mainly worked with layered architecture and concepts similar to Factory and Singleton patterns. Singleton-like behavior was used for shared modules such as database connections and logging, while Factory-style object creation was useful for handling different banking transaction/account types dynamically. Since the application involved client-server communication and UI updates, the design also followed modular and loosely coupled architecture principles. */
+->
+Singleton - Only one object created through entire application.
+ “Singleton pattern is used when only one instance of a class is required throughout the application.
+In our project it was used for shared database/configuration handling so that multiple modules use the same object instead of creating new connections repeatedly.”//1
+
+-> “Factory pattern is used to create objects dynamically based on input type.
+In our reconciliation module, different reconciliation rule handlers were created using a factory-like approach depending on rule type received from database/configuration.”//2
+
+
+-> In our CBS project, we mainly worked with layered architecture and concepts similar to Factory and Singleton patterns. Singleton-like behavior was used for shared modules such as database connections and logging, while Factory-style object creation was useful for handling different banking transaction/account types dynamically. Since the application involved client-server communication and UI updates, the design also followed modular and loosely coupled architecture principles.//3
 
 
 
@@ -400,6 +409,64 @@ What is deadlock?
 What is mutex?
 
 7. Multithreading Questions
+answer-> /* “In reconciliation systems, multithreading is commonly implemented using batch-wise processing. Large transaction data is divided into smaller batches, and multiple worker threads process those batches in parallel. Each thread performs validations like GST check, amount matching, duplicate verification, and status updates for its assigned transactions. This improves throughput and reduces overall reconciliation time significantly.” */
+above senrio e.g.
+use in project:->
+#include <iostream>
+#include <vector>
+#include <thread>
+
+using namespace std;
+
+class Transaction
+{
+public:
+    int trn_id;
+    double amount;
+};
+
+void processBatch(vector<Transaction>& trns,
+                  int start,
+                  int end)
+{
+    for(int i = start; i < end; i++)
+    {
+        cout << "Thread Processing Transaction : "
+             << trns[i].trn_id << endl;
+
+        // GST Validation
+        // Amount Matching
+        // Duplicate Check
+        // Status Update
+    }
+}
+
+int main()
+{
+    vector<Transaction> trns;
+
+    // Dummy transaction data
+    for(int i = 1; i <= 10; i++)
+    {
+        Transaction t;
+        t.trn_id = i;
+        t.amount = 1000 + i;
+
+        trns.push_back(t);
+    }
+
+    // Divide into batches
+    thread t1(processBatch, ref(trns), 0, 3);
+    thread t2(processBatch, ref(trns), 3, 6);
+    thread t3(processBatch, ref(trns), 6, 10);
+
+    t1.join();
+    t2.join();
+    t3.join();
+
+    return 0;
+}
+
 What is thread?
 Difference between process and thread?
 What is race condition?

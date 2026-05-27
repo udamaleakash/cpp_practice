@@ -1,0 +1,54 @@
+Tell me about your project”
+
+Speak in this order:
+
+1) Project overview - name, domain, overview
+2) Your role
+3) Modules
+4) One module in detail
+5) Technolgies used, 
+6) Challenges, production issues, Optimization
+
+=>
+1) Project overview - name, domain, overview
+-> I worked on a Core Banking System (CBS) project in the Banking domain.
+CBS is a centralized banking application where all banking operations like transactions, clearing, reconciliation, reporting, and customer updates are managed from a single system across multiple branches.
+
+2) Your Role
+-> My role was Software Engineer, and I mainly handled backend development and business logic implementation using C/C++ on Linux environment.
+
+3) Modules
+-> I worked on modules like Reconciliation, CTS Clearing, and RBI Report Generation.
+Among these, I mainly worked on the Reconciliation module.
+
+4) One module in detail
+-> In the Reconciliation system, we compare transaction records between different banking systems to identify matched, unmatched, duplicate, or failed transactions.
+
+We handled reconciliation types like:
+
+One-to-One
+One-to-Many
+Many-to-Many
+
+The overall flow was:
+
+Reading/importing transaction files
+Validating transaction data
+Applying reconciliation rules
+Updating transaction status, flags, and remarks in database.
+
+5) Technolgies used, 
+-> Technologies I used include C/C++, OOPS concepts, STL, Data Structures, Linux, GDB debugging tools, and database queries.
+
+
+6) Challenges, production issues, Optimization
+-> One major challenge was processing large transaction files efficiently.
+Initially, performance was slow due to repetitive condition checking and loops.
+To optimize this, I used STL containers like map for faster lookup and improved processing logic, which reduced execution time and improved performance.
+
+Another challenge was memory leaks in the application.
+Some dynamically allocated memory was not being released properly, causing higher memory usage during large file processing.
+I analyzed the issue using debugging and monitoring, fixed improper memory handling, and ensured proper cleanup to stabilize the application.
+
+I also handled production issues, like incorrect status updates, missing record modifications, and transaction mismatches.
+I used log analysis and debugging to identify root causes, fixed condition handling issues, tested the fixes properly, and deployed stable solutions.”
