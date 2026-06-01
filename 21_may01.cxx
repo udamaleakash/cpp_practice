@@ -86,6 +86,50 @@ void remove_duplicate_element_arr(int arr[], int len)
         cout << arr[i] << " ";
     }
 }
+void second_max_element_arr()
+{
+    int arr[] = {11, 11, 11, 56, 56, 78, 78, 78, 34, 34, 223, 223};
+    int len = sizeof(arr) / sizeof(arr[0]);
+    for (int i = 0; i < len; i++)
+    {
+        for (int j = i + 1; j < len; j++)
+        {
+            if (arr[i] < arr[j])
+            {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < len; i++)
+    {
+        for (int j = i + 1; j < len;)
+        {
+            if (arr[i] == arr[j])
+            {
+                for (int k = j; k < len; k++)
+                {
+                    arr[k] = arr[k + 1];
+                }
+
+                len--;
+            }
+            else
+            {
+                j++;
+            }
+        }
+    }
+
+    // Print unique sorted array
+    for (int i = 0; i < len; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << "\n2nd max is: " << arr[1] << endl;
+}
 
 void fibbnacii_series(int n)
 {
@@ -147,9 +191,12 @@ int main()
         cout << "Not plaindrome\n";
 
     // 7)
+    cout<<"7:->\n";
     int arr[] = {12, 45, 12, 45, 67, 7, 89, 900, 89};
     int len = sizeof(arr) / sizeof(arr[0]);
     remove_duplicate_element_arr(arr, len);
+    cout << endl;
+    second_max_element_arr(); // 2nd max element in arr // using loop, high complexity
 
     // 8)
     fibbnacii_series(10); // c = a + b & a = b = c
