@@ -252,7 +252,7 @@ int main()
     cout << "2) " << endl;
     find_third_max_element_arr(arr, len);
     cout << "3) " << endl;
-    find_four_max_element_arr(arr, len); // write once function to get all first to fourth element
+    find_four_max_element_arr(arr, len); // write this once function to get all first to fourth element
     /* For above time complexity: O(n) and space complexity: O(1) */
 
     /* Now using vector */
@@ -264,7 +264,7 @@ int main()
 
     //
 
-    /* Sort and remove duplicates */
+    /* Sort array and remove duplicates */
     int arr1[] = {0, 11, 11, 44, 0, 77, 33, 66, 99, 22, 11, 55, 77, 22, 33, 897, 435, 678, 22, 66, 22, 33, 44, 66, 66, 33, 44, 0};
     int len1 = sizeof(arr1) / sizeof(arr1[0]);
     using_regular_way(arr1, len1);
@@ -274,7 +274,7 @@ int main()
     using_vector(v1);
     cout << "\n";
 
-    /* Move Zeros in arary */
+    /* Move Zeros position in array */
     cout << "\n Move zeros to End position" << endl;
     int arr2[] = {0, 1, 0, 3, 12, 56, 0, 67, 0, 45};
     int len2 = sizeof(arr2) / sizeof(arr2[0]);
