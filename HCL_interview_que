@@ -63,7 +63,6 @@ using namespace std;
 
 void reverse_string(string str, int len)
 {
-
     if (len < 0)
     {
         return;

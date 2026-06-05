@@ -239,6 +239,7 @@ void move_zeros_to_start(int arr[], int &len)
     {
         cout << arr[i] << " ";
     }
+    cout << endl;
 }
 
 int main()

@@ -1,112 +1,96 @@
 #include <iostream>
 #include <cstring>
-#include <utility>  // for std::move
-
+#include <utility> // for std::move
 using namespace std;
 
-class MyBuffer
+class student
 {
 private:
-    char *data;
-    int size;
+    char *name;
 
 public:
-    // 1. Constructor (from string)
-    MyBuffer(const char* str)
+    // constructor
+    student(const char *str)
     {
-        size = strlen(str) + 1;   // +1 for '\0'
-        data = new char[size];
-        memcpy(data, str, size);
-        cout << "Constructor\n";
+        cout << "\nConstructor called" << endl;
+        name = new char[strlen(str) + 1];
+        strcpy(name, str);
     }
 
-    // 2. Destructor
-    ~MyBuffer()
+    // 1) copy constructor
+    student(const student &other)
     {
-        delete[] data;
-        cout << "Destructor\n";
+        cout << "Copy Constructor called" << endl;
+        name = new char[strlen(other.name) + 1];
+        strcpy(name, other.name);
     }
-
-    // 3. Copy Constructor
-    MyBuffer(const MyBuffer &other)
+    // 2) copy Assignment operator
+    student &operator=(const student &other)
     {
-        size = other.size;
-        data = new char[size];
-        memcpy(data, other.data, size);
-        cout << "Copy Constructor\n";
-    }
-
-    // 4. Copy Assignment
-    MyBuffer &operator=(const MyBuffer &other)
-    {
-        cout << "Copy Assignment\n";
-
+        cout << "Copy Assignment operator called" << endl;
         if (this != &other)
         {
-            delete[] data;
-
-            size = other.size;
-            data = new char[size];
-            memcpy(data, other.data, size);
+            delete[] name;
+            name = new char[strlen(other.name) + 1];
+            strcpy(name, other.name);
         }
         return *this;
     }
 
-    // 5. Move Constructor
-    MyBuffer(MyBuffer &&other) noexcept
+    // 3) Destructor
+    ~student()
     {
-        data = other.data;
-        size = other.size;
-
-        other.data = NULL;
-        other.size = 0;
-
-        cout << "Move Constructor\n";
+        cout << "Destructor called" << endl;
+        delete[] name;
+        name = nullptr;
     }
 
-    // 6. Move Assignment
-    MyBuffer &operator=(MyBuffer &&other) noexcept
+    // 4) Move Constructor
+    student(student &&other) noexcept
     {
-        cout << "Move Assignment\n";
+        cout << "Move Constructor called" << endl;
+        name = other.name;
+        other.name = nullptr;
+    }
 
+    // 5) Move Assignment operator
+    student &operator=(student &&other) noexcept
+    {
+        cout << "Move Assignment operator called" << endl;
         if (this != &other)
         {
-            delete[] data;
-
-            data = other.data;
-            size = other.size;
-
-            other.data = NULL;
-            other.size = 0;
+            delete[] name;
+            name = other.name;
+            other.name = nullptr;
         }
         return *this;
-    }
-
-    // Helper function to print data
-    void print() const
-    {
-        if (data)
-            cout << data << endl;
-        else
-            cout << "Empty\n";
     }
 };
 
+/*
+
+student(const char *str) // constructor
+student(const student &other) // copy constructor
+student &operator=(const student &other) // copy Assignment operator
+~student() // Destructor
+student(student &&other) noexcept // Move Constructor
+student &operator=(student &&other) noexcept
+
+*/
+
 int main()
 {
-    MyBuffer a("Hello");
+    // Rule Of 5
+    student s1("Hello"); // constructor
+    student s2 = s1;     // copy constructor
 
-    MyBuffer b = a;            // Copy constructor
-    MyBuffer c("World");
-    c = a;                     // Copy assignment
+    student s3("Temp");
+    s2 = s3; // copy Assignment operator
 
-    MyBuffer d = std::move(a); // Move constructor
-    MyBuffer e("Test");
-    e = std::move(b);          // Move assignment
+    student s4 = move(s1); // move constructor
 
-    cout << "\nData:\n";
-    d.print();
-    e.print();
+    student s5("Account");
+    s5 = move(s4); // Move Assignment operator
 
     return 0;
 }
