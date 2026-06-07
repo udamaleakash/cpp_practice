@@ -97,19 +97,3 @@ int main()
     validate_palindrome();
     return 0;
 }
-// Q1. Briefly introduce yourself focusing on:
-
-// your current role
-
-// what you built in CBS
-
-// your strongest C++ skills
-
-// why you want to switch
-// Hi, my name is Akash Udamale.
-// my current role is software developer at kimaya infotech pvt. ltd.
-// i worked on CBS banking domain as c++ developer.
-// working on various modules like customer form, reconsacation form RBI reports , cts clearing module
-// using c++ oops concepts, STL, multithreading, and dsa.
-// i want carrer grouth and use my techncal skills to big level organzzation like yours.
-// thank you. 

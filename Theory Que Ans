@@ -27,7 +27,7 @@ conclude:
 static_cast is used for compile-time type conversion in C++. It is commonly used for datatype conversion and inheritance-based casting. It is faster but does not perform runtime checking, so downcasting using static_cast can be unsafe.
 
 2) dynamic_cast
-it is use for safe untime conversion.
+it is use for safe runtime conversion.
 mainly use in runtime polymorphism.
 
 Base class must contain at least one virtual function.
@@ -160,10 +160,12 @@ Q11) What is dangling pointer?
 -> A dangling pointer is a pointer that refers to memory that has already been freed or gone out of scope. Accessing such pointers causes undefined behavior, crashes, or garbage values. Dangling pointers commonly occur after using delete, returning addresses of local variables, or accessing objects after scope completion. To avoid them, we should reset pointers to nullptr and prefer smart pointers in modern C++ applications.
 e.g.
     int main()
-    {int *p = new int(10);
+    {
+    int *p = new int(10);
     delete p;
-    cout << *p; // here will see garbage value to avoid use p = nullptr or smart ptr
-    return 0;}
+    cout << *p; // here will see garbage value to avoid this, we will use p = nullptr or smart ptr
+    return 0;
+    }
 
 Q12) What is smart pointer?
 -> Smart pointers are C++ library classes that automatically manage dynamic memory and help prevent memory leaks and dangling pointers. They automatically release memory when the object is no longer needed. Smart pointers are part of modern C++ and follow the RAII principle.

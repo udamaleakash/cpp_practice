@@ -1,0 +1,152 @@
+**Self Introduction**
+
+“Hello Sir/Madam,
+
+My name is Akash Udamale. I belongs from Akole, Dist. Ahmadnagar.
+I completed my Bachelor of Engineering in Computer Engineering from Amrutvahini College of Engineering, sangmner in 2022.
+I have around 3 years of experience in C/C++ application development on Linux platforms.
+Currently, I am working at Kimaya Infotech Pvt Ltd, where I work on Core Banking System (CBS) applications in the banking domain.
+I worked on mainly modules like Reconciliation, CTS Clearing, Web Email Statements, and RBI Report Generation. I also work on backend development, transaction processing, production bug fixing, memory issue debugging, and multipacket handling.
+Technically, I have experience with C, C++, OOPS, STL, multithreading, Linux, GDB, DDD, and file handling.
+I am now looking for an organization to give me opportunity where I can improve my backend and C++ development skills while contributing to challenging projects like as your organization.”
+Thank You.
+
+
+Q.Why should we hire you?
+->
+I have practical experience in C/C++ application development in banking domain.
+I have worked on real-time production systems, debugging, reconciliation modules, performance optimization, Linux development, and issue fixing.
+I am comfortable with problem solving, memory management, STL, and production support activities.
+
+
+***Random Question answers**
+stack vs heap
+->
+Important Interview Line
+
+Stack memory is automatically managed and fast.
+Heap memory is dynamically allocated and manually managed.
+
+
+
+****
+
+smart pointers -->
+
+1. What is a Smart Pointer?
+
+Smart pointers are C++ library classes that automatically manage dynamic memory and help prevent memory leaks and dangling pointers. They automatically release memory when the object is no longer needed. Smart pointers are part of modern C++ and follow the RAII principle.
+
+It helps avoid:
+
+Memory leaks
+Dangling pointers
+Manual delete
+Double free issues
+
+What is unique_ptr?
+
+unique_ptr provides:
+
+Single ownership
+Only one pointer can own the object
+
+Cannot copy.
+e.g. #include <iostream>
+#include <memory>
+
+using namespace std;
+
+int main()
+{
+    unique_ptr<int> p1(new int(100));
+
+    cout << *p1 << endl;
+
+    return 0;
+}
+
+
+Q. Why can't unique_ptr be copied?
+
+Because only one owner is allowed.
+
+Q. How to transfer ownership in unique_ptr?
+
+Using move().
+
+
+**. What is shared_ptr?
+
+shared_ptr allows:
+
+Multiple pointers to share ownership
+
+Uses:
+
+Reference counting
+
+Memory is deleted only when count becomes zero.
+
+
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
+int main()
+{
+    shared_ptr<int> p1(new int(100));
+
+    shared_ptr<int> p2 = p1;
+
+    cout << p1.use_count() << endl;
+
+    return 0;
+}
+
+What is weak_ptr?
+
+weak_ptr is used with shared_ptr.
+
+It:
+
+Does NOT increase reference count
+Prevents circular dependency
+
+Problem:
+
+A points to B
+B points to A
+
+Reference count never becomes 0.
+
+Result:
+
+Memory leak
+
+class B;
+
+class A
+{
+public:
+    weak_ptr<B> ptr;
+};
+
+class B
+{
+public:
+    shared_ptr<A> ptr;
+};
+
+weak_ptr does not increase reference count
+memory is released properly
+
+
+// shared ptr works on reference count of pointer ends it willl 0 rhen delete ptr.
+// weak ptr use with shared ptr when shared ptr Reference count NOT 0 then issue like memory leak so use weak_ptr;
+
+
+//unique_ptr for ownership-based objects and shared_ptr where multiple modules accessed shared resources.
+
+
