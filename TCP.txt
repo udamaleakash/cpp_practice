@@ -41,3 +41,65 @@ here SOCK_STREAM means TCP.
 * IP identifies the machine, Port identifies the application.
 
 
+**What is TCP 3-Way Handshake?
+-> TCP (Transmission Control Protocol) uses a 3-Way Handshake to establish a reliable connection between a client and a server before data transmission begins.
+The purpose is to:
+Verify both client and server are reachable.
+Synchronize sequence numbers.
+Establish a reliable communication channel.
+
+***
+Short Interview Answer
+-> TCP 3-Way Handshake is the process used to establish a reliable connection between client and server. First, the client sends SYN with its sequence number. Second, the server responds with SYN-ACK containing its own sequence number and acknowledgment. Third, the client sends ACK. After these three steps, both sides synchronize sequence numbers and the connection enters the ESTABLISHED state, allowing reliable data transfer.
+***
+
+
+Step 1: SYN (Client → Server)
+Client wants to connect to the server.
+Client -----------------------> Server
+       SYN, Seq = 100
+
+Step 2: SYN-ACK (Server → Client)
+Client <----------------------- Server
+       SYN + ACK
+       Seq = 500
+       Ack = 101
+"I received your SYN (100). I expect 101 next. My sequence number is 500."
+
+Step 3: ACK (Client → Server)
+Client acknowledges server's SYN.
+Client -----------------------> Server
+       ACK
+       Seq = 101
+       Ack = 501
+"I received your SYN (500). I expect 501 next."
+Now connection is established.
+
+Summary: 
+Client                    Server
+  |------ SYN ----------->|
+  |<--- SYN + ACK --------|
+  |------ ACK ----------->|
+
+
+
+Real-Life Analogy
+Imagine a phone call:
+SYN
+You:
+"Hello, can you hear me?"
+
+SYN-ACK
+Friend:
+"Yes, I can hear you. Can you hear me?"
+
+ACK
+You:
+"Yes, I can hear you too."
+Now conversation starts.
+
+*For your Banking/Transaction Processing project, a good interview answer is:->
+"Our application communicated with external systems over TCP/IP sockets. Before any transaction data was exchanged, TCP performed a 3-way handshake to establish a reliable connection. We relied on TCP because it guarantees ordered delivery, retransmission of lost packets, and error checking, which are critical for financial transactions."
+
+
+
