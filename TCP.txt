@@ -1,1 +1,43 @@
 
+1. What is TCP?
+Answer: TCP (Transmission Control Protocol) is a connection-oriented protocol that provides reliable, ordered, and error-checked delivery of data between applications.
+
+TCP: 
+TCP is a connection-oriented protocol that provides reliable, ordered, and error-checked communication between applications. We use TCP in banking systems, web applications, database connectivity, file transfers, and client-server applications where data loss is not acceptable.
+
+"In my banking project, our application communicates with database servers and other backend services over the network. Underneath, TCP is used to ensure reliable and ordered delivery of transaction data. Since banking transactions cannot afford data loss or out-of-order processing, TCP is preferred. While I primarily worked on the application layer in C++ on Linux, the communication between client-server components relied on TCP/IP."
+
+
+Based on your resume and banking project:->
+"I haven't developed a TCP protocol implementation myself, but in my project the application communicates with Oracle databases and backend services over TCP/IP. TCP is important because transaction and account data must be delivered reliably and in the correct order."
+
+2. What is UDP?
+Answer: UDP (User Datagram Protocol) is connectionless and does not guarantee delivery, ordering, or retransmission.
+Examples:
+Video streaming
+Online gaming
+VoIP
+
+3. TCP vs UDP
+TCP:
+-Connection-oriented	
+-Reliable	
+-Ordered delivery	
+-Slower	
+-Banking transactions	
+
+UDP:
+-Connectionless
+- Unreliable
+- No ordering
+- Faster
+- Streaming/Gaming
+
+5. What is a Socket?
+Answer: A socket is an endpoint of communication between two processes over a network.
+In Linux: int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+here SOCK_STREAM means TCP.
+
+* IP identifies the machine, Port identifies the application.
+
+
