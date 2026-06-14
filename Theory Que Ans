@@ -343,7 +343,7 @@ Abstraction → Hide Complexity
 Inheritance → Reuse Code
 Polymorphism → One Interface, Multiple Behaviors
 
-// Q22) What is abstraction?
+// Q22) What is abstraction? 
 Q23) Real-time example of encapsulation?
 -> A real-time example of encapsulation is a bank account or ATM machine. The account balance is kept private and cannot be modified directly. Users can access it only through methods like deposit, withdraw, or check balance. This protects data and ensures that all business validations are applied before modifying the balance.
 
