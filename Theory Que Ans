@@ -304,16 +304,49 @@ what is Rule of 3/5
 Rule of 5 extends this concept in C++11 by additionally including move constructor and move assignment operator for efficient resource transfer and performance optimization.
 
 Q15) Explain const correctness.
+-> Const correctness is a coding practice in C++ where we use const to clearly define read-only data and functions. It improves safety, prevents accidental changes, and helps write more maintainable and robust code.
+
+** One-Line Summary
+Normal → Changeable, temporary.
+const → Not changeable.
+static → Lives for the entire program and retains value.
+
+
 Q16) What is static keyword in C++?
+-> "The static keyword gives a variable or function a lifetime of the entire program. A static local variable retains its value between function calls, a static data member is shared among all objects of a class, and a static member function can be called without creating an object. At global scope, static restricts visibility to the current source file."
+
 Q17) Difference between class and struct?
-Q18) What is object slicing?
-Q19) What is vtable/vptr?
-Q20) Why destructor should be virtual?
+-> "In C++, class and struct are almost the same. The main difference is that members and inheritance are private by default in a class, while they are public by default in a struct. Typically, structs are used for simple data structures, whereas classes are used for implementing OOP concepts like encapsulation and abstraction."
+
+// Q18) What is object slicing?
+// Q19) What is vtable/vptr?
+// Q20) Why destructor should be virtual?
 
 2. OOPS Questions
 Q21) Explain all OOPS concepts.
-Q22) What is abstraction?
+->
+1. Encapsulation- Protect Data
+Encapsulation means binding data and methods together into a single unit (class) and restricting direct access to data.
+
+2. Abstraction- Hide complexity
+->Abstraction hides implementation details and exposes only necessary features to the user.
+
+3. Inheritance 
+Inheritance allows a derived class to reuse the properties and behavior of a base class.
+4. Polymorphism 
+Polymorphism means one interface, many forms.
+or 
+Polymorphism allows the same function call to behave differently depending on the object.
+
+Encapsulation → Protect Data
+Abstraction → Hide Complexity
+Inheritance → Reuse Code
+Polymorphism → One Interface, Multiple Behaviors
+
+// Q22) What is abstraction?
 Q23) Real-time example of encapsulation?
+-> A real-time example of encapsulation is a bank account or ATM machine. The account balance is kept private and cannot be modified directly. Users can access it only through methods like deposit, withdraw, or check balance. This protects data and ensures that all business validations are applied before modifying the balance.
+
 Q24) Multiple inheritance issue?
 Q25) What is diamond problem?
 Q26) What is pure virtual function?

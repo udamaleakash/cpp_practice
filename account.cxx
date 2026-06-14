@@ -1,85 +1,54 @@
+
 #include <iostream>
-#include <cstring>
-#include <utility>  // for std::move
+#include <string.h>
+
 using namespace std;
 
-class student
-{
-private:
-    char *name;
-
-public:
-    // constructor
-    student(const char *str)
+class Account{
+    
+    private:
+        char *data;
+    public:
+    Account(const char *str)// constructor
     {
-        cout << "\nConstructor called" << endl;
-        name = new char[strlen(str) + 1];
-        strcpy(name, str);
+        data = new char [strlen(str)+1];
+        strcpy(data, str);
+        cout<<"constructor callled\n";
     }
-
-    // 1) copy constructor
-    student(const student &other)
-    {
-        cout << "Copy Constructor called" << endl;
-        name = new char[strlen(other.name) + 1];
-        strcpy(name, other.name);
+    Account(const Account &other){
+        data = new char[strlen(other.data)+1];
+        strcpy(data, other.data);
+        cout<<"copy constructor callled\n";
     }
-    // 2) copy Assignment operator
-    student &operator=(const student &other)
+    
+    Account &operator=(const Account &other)
     {
-        cout << "Copy Assignment operator called" << endl;
-        if (this != &other)
+        cout<<"copy Assignment operator callled\n";
+        if(this != &other)
         {
-            delete[] name;
-            name = new char[strlen(other.name) + 1];
-            strcpy(name, other.name);
+           
+            data = new char[strlen(other.data)+1];
+            strcpy(data, other.data);
         }
         return *this;
     }
-
-    // 3) Destructor
-    ~student()
+    
+    ~Account()
     {
-        cout << "Destructor called" << endl;
-        delete[] name;
-        name = nullptr;
-    }
-
-    // 4) Move Constructor
-    student(student &&other) noexcept
-    {
-        cout << "Move Constructor called" << endl;
-        name = other.name;
-        other.name = nullptr;
-    }
-
-    // 5) Move Assignment operator
-    student &operator=(student &&other) noexcept
-    {
-        cout << "Move Assignment operator called" << endl;
-        if (this != &other)
-        {
-            delete[] name;
-            name = other.name;
-            other.name = nullptr;
-        }
-        return *this;
+        cout<<"Destructor called\n";
+        delete[] data;
+        
     }
 };
 
 int main()
 {
-    // Rule Of 5
-    student s1("Hello"); // constructor
-    student s2 = s1;     // copy constructor
-
-    student s3("Temp");
-    s2 = s3; // copy Assignment operator
-
-    student s4 = move(s1); // move constructor
-
-    student s5("Account");
-    s5 = move(s4); // Move Assignment operator
+    Account a1("Hello");
+    Account a2 = a1;
+    
+    Account a3("Akash");
+    a2 = a3;
+    
 
     return 0;
 }
