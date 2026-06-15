@@ -317,6 +317,38 @@ Q16) What is static keyword in C++?
 
 Q17) Difference between class and struct?
 -> "In C++, class and struct are almost the same. The main difference is that members and inheritance are private by default in a class, while they are public by default in a struct. Typically, structs are used for simple data structures, whereas classes are used for implementing OOP concepts like encapsulation and abstraction."
+static member functions->
+ A static member function belongs to the class rather than an object. It can be called using the class name without creating an object. Since it has no this pointer, it can access only static data members and other static member functions. Static functions are commonly used for utility functions, object counters, and operations that are common to all objects of a class.
+ e.g.
+ #include <iostream>
+using namespace std;
+
+class Test
+{
+    static int count;
+
+public:
+    Test()
+    {
+        count++;
+    }
+
+    static void display()
+    {
+        cout << "Count = " << count << endl;
+    }
+};
+
+int Test::count = 0;
+
+int main()
+{
+    Test t1;
+    Test t2;
+    Test t3;
+
+    Test::display();
+} // count = 3
 
 // Q18) What is object slicing?
 // Q19) What is vtable/vptr?

@@ -142,10 +142,20 @@ interview questions
 
 - modules - explain like reconcilation , CTS clearing
 - what the database use for project
+-> "The backend database used by our banking application is Oracle (if that's actually true in your organization). My interaction with it is limited to checking transaction records, validating data, and understanding table structures during debugging. Most of my work is on the application side in C/C++."
+
+or
+However, I have basic knowledge of Oracle and MySQL. I understand concepts such as tables, indexes, primary keys, joins, normalization, and can write SQL queries for data validation and troubleshooting. While I have not been involved in database design or administration, I am comfortable working with databases when required.
+
+
 - know about card processing credit/Debit
 - rate c++ 8/10
-- suppose a empty class so compiler what default comilpe or gentare
+- Suppose we create an empty class in C++. What does the compiler generate by default?
+-> For an empty class, the compiler automatically generates special member functions such as the default constructor, copy constructor, copy assignment operator, destructor, and in C++11 and later, move constructor and move assignment operator. Also, an empty class object has a size of at least 1 byte so that each object has a unique address.
+If you define any constructor, the compiler will not generate the default constructor automatically.
+
 - tell output below code ( releated about static member function)
+
  class test{
     int a=10;
     static int b =20;
@@ -209,5 +219,22 @@ class Test {
     static const int b = 20;   // Valid
 };
 
+**A static member function belongs to the class rather than an object. It can be called using the class name without creating an object. Since it has no this pointer, it can access only static data members and other static member functions. Static functions are commonly used for utility functions, object counters, and operations that are common to all objects of a class.
+
 -vector vs array diff.
+-> Vector provides dynamic resizing, STL support, iterators, automatic memory management, and convenient functions like push_back(), pop_back(), size(), and capacity(). Arrays have fixed size and require manual management.
+
+Diff bwetn ->
+| Feature        | Array      | 2D Array   | Vector        | Map                           |
+| -------------- | ---------- | ---------- | ------------- | ----------------------------- |
+| Data Structure | Linear     | Matrix     | Dynamic Array | Balanced BST (Red-Black Tree) |
+| Size           | Fixed      | Fixed      | Dynamic       | Dynamic                       |
+| Memory         | Contiguous | Contiguous | Contiguous    | Non-contiguous                |
+| Access         | O(1)       | O(1)       | O(1)          | O(log n)                      |
+| Insert End     | N/A        | N/A        | O(1) avg      | O(log n)                      |
+| Search         | O(n)       | O(n²)      | O(n)          | O(log n)                      |
+| Sorted         | No         | No         | No            | Yes                           |
+| Key-Value Pair | No         | No         | No            | Yes                           |
+
+
 -gdb ddd process
