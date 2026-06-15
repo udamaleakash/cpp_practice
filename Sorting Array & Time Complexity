@@ -8,5 +8,5 @@ Sorting Array & Time Complexity
 6) Heap Sort      -> O(n log n)-> slower than quick sort
 7) STL sort()     -> O(n log n) -> Best choice
 
--> Quick Sort is generally the fastest sorting algorithm in practice because of good cache locality and low overhead. However, its worst-case complexity is O(n²). In C++, std::sort() is preferred because it uses Introsort, which starts with Quick Sort and switches to Heap Sort when needed, guaranteeing O(n log n) worst-case performance.
+-> Quick Sort is generally the fastest sorting algorithm in practice because of good cache locality and low overhead. However, its worst-case complexity is O(n²). In C++, std::sort() is preferred because it uses Introsort, which starts with Quick Sort and switches to Heap Sort when needed, guaranteeing O(n log n) worst-case performance. 
 
