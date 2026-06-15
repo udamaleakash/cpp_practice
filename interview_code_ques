@@ -146,7 +146,7 @@ interview questions
 - rate c++ 8/10
 - suppose a empty class so compiler what default comilpe or gentare
 - tell output below code ( releated about static member function)
- class Test{
+ class test{
     int a=10;
     static int b =20;
     public:
@@ -159,6 +159,55 @@ interview questions
     test t1;
     t1.show();
  } 
+ Answer-> 
+ Error 1: Static member initialization inside class
+ static int b = 20;
+ it should be,
+ class Test {
+    int a = 10;
+    static int b;
+};
+int Test::b = 20;
+Error 2: Static function accessing non-static member
+a is a non-static member, but show() is static.
+
+
+Answer corrected code:->
+#include <iostream>
+using namespace std;
+
+class Test {
+    static int a;
+    static int b;
+
+public:
+    static void show() {
+        cout << "a=" << a << endl;
+        cout << "b=" << b << endl;
+    }
+};
+
+int Test::a = 10;
+int Test::b = 20;
+
+int main() {
+    Test t1;
+    t1.show();
+}
+// -> a=10, b=20
+
+
+// C++17 and later
+// Using inline:
+class Test {
+    inline static int b = 20;   // Valid
+};
+//No separate definition is needed.
+
+// Even before C++17:
+class Test {
+    static const int b = 20;   // Valid
+};
 
 -vector vs array diff.
 -gdb ddd process
