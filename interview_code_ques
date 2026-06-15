@@ -131,3 +131,34 @@ int main()
 
     return 0;
 }
+
+
+
+
+// -------------------------------------------------
+**Global_Pyaments tsys pune** 
+attended on 15th June 2026 3pm
+interview questions
+
+- modules - explain like reconcilation , CTS clearing
+- what the database use for project
+- know about card processing credit/Debit
+- rate c++ 8/10
+- suppose a empty class so compiler what default comilpe or gentare
+- tell output below code ( releated about static member function)
+ class Test{
+    int a=10;
+    static int b =20;
+    public:
+    static void show(){
+        cout<<"a="<<a<<endl;
+        cout<<"b="<<b<<endl;
+    }
+
+ }  int main(){
+    test t1;
+    t1.show();
+ } 
+
+-vector vs array diff.
+-gdb ddd process
