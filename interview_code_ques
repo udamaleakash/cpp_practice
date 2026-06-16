@@ -238,3 +238,92 @@ Diff bwetn ->
 
 
 -gdb ddd process
+-----------------------------------------------------------
+
+Data Axle interview que. (done on 16 june 2026 11am)
+- rate in c++ /10
+- copy constructor , 
+- pplymorphism
+- runtime polymorphism
+- write code input = ABC#%XYZ*  reverse string only reverse alphanumeric char
+- give output below
+1)#include<iostream>
+
+using namespace std;
+
+void counter() {
+
+static int c = 0;
+
+c++;
+
+cout<<c<<" ";
+
+}
+
+int main() {
+
+counter();
+
+counter();
+
+counter();
+
+return 0;
+
+}//1 2 3
+2)
+#include <iostream>
+using namespace std;
+ 
+int main() {
+    int a = 10;
+    int *p = &a;
+    int **q = &p;
+ 
+    **q = 99;
+ 
+    cout << a << " " << *p << " " << **q;
+    return 0;
+}
+// 99 99 99
+class A {
+
+public:
+
+    virtual void x() { cout << "A"; }
+
+};
+ 
+class B {
+
+public:
+
+    virtual void x() { cout << "B"; }
+
+};
+ 
+class C : public A, public B {
+
+public:
+
+    void x() override {
+
+        cout << "C";
+
+    }
+
+};
+ 
+Cobj;
+
+obj.x();
+ // C
+
+ Q. what is runtime polymorphism
+ Q. what is pure virtual is_function -> why we need
+Q. What is friend is_function
+Q. multiple inheritance
+Q. work on cloud techno.?
+Q. know about shell scripting lang
+ 
