@@ -1,0 +1,55 @@
+
+Relational Database = Type of database technology.
+Customized Database = Business-specific design built on that technology.
+
+For example:
+Oracle (RDBMS) + Banking-specific tables = Customized Relational Database.
+
+This is likely what your CBS project used: a customized relational database accessed through SQL for migration, validation, and reconciliation.
+
+
+1. What is SQL ?
+-> SQL (Structured Query Language) is used to store, retrieve, update, and manage data in relational databases.
+
+2. What is RDBMS?
+Answer:-
+RDBMS stands for Relational Database Management System. It stores data in tables and establishes relationships between tables using keys.
+
+Examples:-
+Oracle
+MySQL
+PostgreSQL
+SQL Server
+
+4. What is a Primary Key?
+Answer:-
+A Primary Key uniquely identifies each row in a table. It cannot contain NULL values or duplicate values.
+Example:-
+CREATE TABLE CUSTOMER(
+    CUSTOMER_ID INT PRIMARY KEY,
+    NAME VARCHAR(50)
+);
+
+5. What is a Foreign Key?
+Answer:-
+A Foreign Key creates a relationship between two tables.
+CREATE TABLE ACCOUNT(
+    ACCOUNT_NO INT,
+    CUSTOMER_ID INT,
+    FOREIGN KEY(CUSTOMER_ID)
+    REFERENCES CUSTOMER(CUSTOMER_ID)
+);
+
+
+6. Difference Between Primary Key and Foreign Key?
+->
+Primary Key	
+Uniquely identifies 
+No duplicates	
+No NULL	
+
+Foreign Key
+row	References another table
+Duplicates allowed
+NULL allowed
+
