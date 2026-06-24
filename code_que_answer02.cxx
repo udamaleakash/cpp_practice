@@ -174,7 +174,7 @@ void removeDuplicate(int arr[], int &len)
 {
 	for (int i = 0; i < len; i++) // 2, 2, 3, 4, 5, 3, 4, 1, 1, 88, 45, 45,88
 	{
-		for (int j = i + 1; j < len; j++)
+		for (int j = i + 1; j < len;)
 		{
 			if (arr[i] == arr[j])
 			{
@@ -183,6 +183,10 @@ void removeDuplicate(int arr[], int &len)
 					arr[k] = arr[k + 1]; /* duplicate element replaced by next element */
 				}
 				len--; /* when duplicate element remove then size decrease by one */
+			}
+			else
+			{
+				j++;
 			}
 		}
 	}
@@ -248,7 +252,7 @@ void merge_two_sorted_arr()
 		if (i < len1)
 			arr3[i] = arr1[i];
 		else
-			arr3[i] = arr2[i - len1];		
+			arr3[i] = arr2[i - len1];
 		printf("%d%c", arr3[i], i != (len1 + len2 - 1) ? ',' : ' ');
 	}
 }

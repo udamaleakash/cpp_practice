@@ -4,7 +4,7 @@ using namespace std;
 
 // Here String & Array
 // Reverse using Recursion
-// start, end approach - swap it
+// Start & End approach - swap it
 
 void reverse_str_recursion(char str[], int start, int end) // char string
 {
