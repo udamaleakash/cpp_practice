@@ -241,10 +241,27 @@ void move_zeros_to_start(int arr[], int &len)
     }
     cout << endl;
 }
-
+#include <set>
+void using_set()
+{
+    /* fisrt store in vector then insert in set */
+    set<int> s1;
+    vector<int> v2 = {23, 56, 34, 56, 34, 12, 890, 456, 345, 876, 23, 45, 90, 90, 23, 56, 56, 56, 34, 34};
+    vector<int>::iterator it2;
+    for (it2 = v2.begin(); it2 != v2.end(); it2++)
+    {
+        s1.insert(*it2);
+    }
+    set<int>::iterator it3;
+    for (it3 = s1.begin(); it3 != s1.end(); it3++)
+    {
+        cout << *it3 << " ";
+    }
+}
 int main()
 {
     /* Coding Que & answers */
+
     /* Find the 1st, 2nd, 3rd & 4th Maximum element from array. (here use climits INT_MIN) */
     int arr[] = {11, 56, 56, 78, 78, 11, 11, 78, 34, 34, 223, 223};
     int len = sizeof(arr) / sizeof(arr[0]);
@@ -261,9 +278,8 @@ int main()
     use_vector(v); // Time complexity: O(n log n) and space complexity: O(n) because of sorting and storing unique elements in vector.
 
     /* Which is Faster first one or second one?
-       First one is faster than the second one because of time complexity. But the second one is more readable and less error-prone than the first one. */
-
-    //
+       First one is faster than the second one because of time complexity. But the second one is more readable and less error-prone than the first one.
+    */
 
     /* Sort array and remove duplicates */
     int arr1[] = {0, 11, 11, 44, 0, 77, 33, 66, 99, 22, 11, 55, 77, 22, 33, 897, 435, 678, 22, 66, 22, 33, 44, 66, 66, 33, 44, 0};
@@ -281,6 +297,19 @@ int main()
     int len2 = sizeof(arr2) / sizeof(arr2[0]);
     move_zeros_to_end(arr2, len2);
     move_zeros_to_start(arr2, len2);
+
+    /* Using set to remove duplicate ele */
+    /* in set they only take unique elements and sort auto */
+    cout << "\n Using set to Remove Duplicate Elements" << endl;
+    using_set();
+
+    /* best answer -> sort & duplicate elements 
+    use vector
+    sort(v.begin(), v.end());
+    v.erase(unique(v.begin(), v.end()), v.end());
+    Time: O(n log n)
+    Space: O(1) extra (approximately)
+    */
 
     return 0;
 }

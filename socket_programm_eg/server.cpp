@@ -11,7 +11,7 @@ using namespace std;
 #define BUFFER_SIZE 1024
 
 
-/* Read bottom notes also, code + explain functions in below nad some interview questions answers on socket prog.*/
+/* Read bottom notes also, code + explain functions in below and some interview questions answers on socket prog.*/
 
 int main()
 {
