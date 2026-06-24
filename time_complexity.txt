@@ -1,0 +1,54 @@
+Complexity Ranking (Best → Worst)
+
+O(1)
+   ↓
+O(log N) -> Binary search
+   ↓
+O(N) -> Linear search
+   ↓
+O(N log N)
+   ↓
+O(N²)
+   ↓
+O(2^N)
+   ↓
+O(N!)
+
+
+Ranking (Fastest to Slowest Search)
+unordered_map  -> O(1)
+
+map            -> O(log N)
+
+array          -> O(N)
+
+vector         -> O(N)
+
+2D array       -> O(N²)  (if full scan required)
+
+
+
+
+// 1) Sort and remove duplicates elements 
+// best sloution code using sort() & unique() -> O(N log N)
+->
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    int arr[] = {5, 5,8,3,11,678,789,23,34,34,34,56,67,11,23,2, 8, 2, 1, 5, 8, 3};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    sort(arr, arr + n);
+    int newSize = unique(arr, arr + n) - arr;
+    
+    cout << "After removing duplicates:\n";
+    for(int i = 0; i < newSize; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
