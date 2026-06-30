@@ -74,7 +74,7 @@ student(const student &other) // copy constructor
 student &operator=(const student &other) // copy Assignment operator
 ~student() // Destructor
 student(student &&other) noexcept // Move Constructor
-student &operator=(student &&other) noexcept
+student &operator=(student &&other) noexcept // move assignment operator
 
 */
 

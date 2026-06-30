@@ -11,7 +11,7 @@ void reverse_str_recursion(char str[], int start, int end) // char string
     if (start >= end)
         return;
 
-    char temp = str[start];
+    char temp = str[start]; // swap it
     str[start] = str[end];
     str[end] = temp;
     reverse_str_recursion(str, start + 1, end - 1);
@@ -37,10 +37,11 @@ int main()
     cout << str1;
 
     cout << endl;
+
     // array reverse using recursion
     int arr[] = {34, 67, 12, 0, 88, 96, 47};
     int len = sizeof(arr) / sizeof(arr[0]);
-    reverse_arr_recursion(arr, 0, len - 1); // here 0= start & len-1 =end
+    reverse_arr_recursion(arr, 0, len - 1); // here 0 = start & len-1 =end
     for (int i = 0; i < len; i++)
     {
         cout << arr[i] << " ";
