@@ -135,6 +135,90 @@ Q2) What is shallow copy and deep copy?
 Q3) What is copy constructor?
 ->A copy constructor is a special constructor in C++ used to create a new object as a copy of an existing object. It is called when an object is initialized using another object of the same class. By default, the compiler provides a copy constructor, but for classes using dynamic memory, we usually implement our own copy constructor to perform deep copy and avoid shallow copy issues.
 
+
+Q. virtul function-
+A virtual function is a member function in a base class that you declare using the virtual keyword. It allows the derived class to provide its own implementation, and the correct function is called at runtime based on the actual object type, not the pointer type.
+
+ e.g. without virtual is_function#include <iostream>
+using namespace std;
+
+class Animal
+{
+public:
+    void speak()
+    {
+        cout << "Animal speaks" << endl;
+    }
+};
+
+class Dog : public Animal
+{
+public:
+    void speak()
+    {
+        cout << "Dog barks" << endl;
+    }
+};
+
+int main()
+{
+    Animal *ptr = new Dog();
+
+    ptr->speak();
+
+    delete ptr;
+    return 0;
+}
+Output
+Animal speaks
+Why?
+
+Although ptr points to a Dog, its type is Animal*. Since speak() is not virtual, C++ calls the base class version.
+
+Why do we need a virtual function?
+
+Without virtual, C++ decides which function to call based on the pointer type (compile-time).
+
+With virtual, C++ decides based on the actual object type (runtime).
+
+e.g. with virtual fun
+#include <iostream>
+using namespace std;
+
+class Animal
+{
+public:
+    virtual void speak()
+    {
+        cout << "Animal speaks" << endl;
+    }
+};
+
+class Dog : public Animal
+{
+public:
+    void speak() override
+    {
+        cout << "Dog barks" << endl;
+    }
+};
+
+int main()
+{
+    Animal *ptr = new Dog();
+
+    ptr->speak();
+
+    delete ptr;
+    return 0;
+}
+Output
+Dog barks
+
+Now C++ checks the actual object (Dog) at runtime and calls Dog::speak().
+
+
+
 Q4) Why do we use virtual functions?
 ->Virtual functions are used to achieve runtime polymorphism in C++. They allow us to call the derived class function using a base class pointer or reference. This helps in writing flexible, extensible, and loosely coupled code, especially in large-scale applications and framework-based designs.
 
