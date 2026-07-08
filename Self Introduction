@@ -60,6 +60,8 @@ using namespace std;
 int main()
 {
     unique_ptr<int> p1(new int(100));
+    unique_ptr<int> p2(new int(100));
+    unique_ptr<int> p3(new int(300));
 
     cout << *p1 << endl;
 
@@ -67,7 +69,7 @@ int main()
 }
 
 
-Q. Why can't unique_ptr be copied?
+Q. Why can not unique_ptr be copied?
 
 Because only one owner is allowed.
 
@@ -143,7 +145,7 @@ weak_ptr does not increase reference count
 memory is released properly
 
 
-// shared ptr works on reference count of pointer ends it willl 0 rhen delete ptr.
+// shared ptr works on reference count of pointer ends it willl 0 then delete ptr.
 // weak ptr use with shared ptr when shared ptr Reference count NOT 0 then issue like memory leak so use weak_ptr;
 
 

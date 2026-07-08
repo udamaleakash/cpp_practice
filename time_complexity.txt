@@ -27,28 +27,30 @@ vector         -> O(N)
 2D array       -> O(N²)  (if full scan required)
 
 
+// sort and remove duplicate elements
+// Vector + sort() + unique() + erase()
+// Time complixity - O(N log N)
 
-
-// 1) Sort and remove duplicates elements 
-// best sloution code using sort() & unique() -> O(N log N)
-->
 #include <iostream>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
 int main()
 {
-    int arr[] = {5, 5,8,3,11,678,789,23,34,34,34,56,67,11,23,2, 8, 2, 1, 5, 8, 3};
+    int arr[] = {5,5,8,3,11,678,789,23,34,34,34,56,67,11,23,2,8,2,1,5,8,3};
     int n = sizeof(arr) / sizeof(arr[0]);
 
-    sort(arr, arr + n);
-    int newSize = unique(arr, arr + n) - arr;
-    
-    cout << "After removing duplicates:\n";
-    for(int i = 0; i < newSize; i++)
-    {
-        cout << arr[i] << " ";
-    }
+    vector<int> v(arr, arr + n);
+
+    sort(v.begin(), v.end());
+
+    v.erase(unique(v.begin(), v.end()), v.end());
+
+    cout << "Unique Elements:\n";
+
+    for (int x : v)
+        cout << x << " ";
 
     return 0;
 }

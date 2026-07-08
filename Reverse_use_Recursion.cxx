@@ -32,13 +32,18 @@ void reverse_arr_recursion(int arr[], int start, int end) // array
 int main()
 {
     // string reverse using recursion
-    char str1[] = "Customer ID";
-    reverse_str_recursion(str1, 0, strlen(str1) - 1);
-    cout << str1;
+    cout<<"string reverse using recursion"<<endl;
 
+    char str1[] = "Customer ID";
+    reverse_str_recursion(str1, 0, strlen(str1) - 1); // (string, start, end)
+    cout << str1;
     cout << endl;
 
+
+
     // array reverse using recursion
+    cout<<"array reverse using recursion"<<endl;
+
     int arr[] = {34, 67, 12, 0, 88, 96, 47};
     int len = sizeof(arr) / sizeof(arr[0]);
     reverse_arr_recursion(arr, 0, len - 1); // here 0 = start & len-1 =end

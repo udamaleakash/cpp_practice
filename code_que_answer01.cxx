@@ -1,5 +1,5 @@
 #include <iostream>
-#include <climits>
+#include <climits> // we can use here string.h also but for better we use this
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -303,7 +303,7 @@ int main()
     cout << "\n Using set to Remove Duplicate Elements" << endl;
     using_set();
 
-    /* best answer -> sort & duplicate elements 
+    /* best answer -> sort & duplicate elements
     use vector
     sort(v.begin(), v.end());
     v.erase(unique(v.begin(), v.end()), v.end());
