@@ -342,4 +342,7 @@ Q. know about shell scripting lang
 9. desing pattern
 10. write code singleton class make it thread safe
 11. are you work with Javascrpit & cloud tech?
+12. STL container use - time complxity
+13. sort - algoritihm, bubble sort, heap sort
+
 
