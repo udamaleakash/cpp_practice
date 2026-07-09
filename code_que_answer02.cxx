@@ -303,7 +303,9 @@ int main()
 	delete actno2;
 	delete long_name2;
 
+	// string result2 = reverseString3("i love c++");
 	// string result2 = reverseString4("i love c++");
+	
 	// printf("\r\n %s", result2.c_str());
 
 	// string result3 = reverseWordsString("i love c++");

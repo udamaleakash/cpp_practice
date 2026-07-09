@@ -12,11 +12,8 @@ using namespace std;
 int main()
 {
     double x = 10.75;
-
     int y = static_cast<int>(x);
-
     cout << y;
-
     return 0;
 }
 // if i do int y = (int)x; // also works but
@@ -139,7 +136,8 @@ Q3) What is copy constructor?
 Q. virtul function-
 A virtual function is a member function in a base class that you declare using the virtual keyword. It allows the derived class to provide its own implementation, and the correct function is called at runtime based on the actual object type, not the pointer type.
 
- e.g. without virtual is_function#include <iostream>
+ e.g. without virtual function
+#include <iostream>
 using namespace std;
 
 class Animal
@@ -218,9 +216,11 @@ Dog barks
 Now C++ checks the actual object (Dog) at runtime and calls Dog::speak().
 
 
-
 Q4) Why do we use virtual functions?
 ->Virtual functions are used to achieve runtime polymorphism in C++. They allow us to call the derived class function using a base class pointer or reference. This helps in writing flexible, extensible, and loosely coupled code, especially in large-scale applications and framework-based designs.
+
+*Pure virtual functions:-
+-> A pure virtual function is a virtual function declared with = 0. It has no implementation in the base class and forces every derived class to provide its own implementation. A class containing at least one pure virtual function becomes an abstract class, meaning its objects cannot be created. Pure virtual functions are used to define a common interface and achieve runtime polymorphism.
 
 Q5) Difference between compile-time and runtime polymorphism?
 -> Compile-time polymorphism is achieved using function or operator overloading, where the compiler resolves the function call during compilation. Runtime polymorphism is achieved using virtual functions and inheritance, where the correct overridden function is selected at runtime using base class pointers or references. Compile-time polymorphism is faster, while runtime polymorphism is more flexible and commonly used in scalable real-world applications.

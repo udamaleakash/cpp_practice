@@ -320,8 +320,8 @@ Cobj;
 obj.x();
  // C
 
- Q. what is runtime polymorphism
- Q. what is pure virtual is_function -> why we need
+Q. what is runtime polymorphism
+Q. what is pure virtual is_function -> why we need
 Q. What is friend is_function
 Q. multiple inheritance
 Q. work on cloud techno.?
