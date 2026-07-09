@@ -327,3 +327,19 @@ Q. multiple inheritance
 Q. work on cloud techno.?
 Q. know about shell scripting lang
  
+
+
+** prititi techo.
+
+1. tell me yourself and project
+2. which version c++ use - 11/14
+3. lambda experssion
+4. polymorphism
+5. what is runtime poly use in project
+6. multithreading - race condition
+7. rvalue ref or type
+8. solid princliple
+9. desing pattern
+10. write code singleton class make it thread safe
+11. are you work with Javascrpit & cloud tech?
+
