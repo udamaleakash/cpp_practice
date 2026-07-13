@@ -349,3 +349,12 @@ Q. know about shell scripting lang
 13. sort - algoritihm, bubble sort, heap sort
 
 
+** nCiricle tech ,pune
+
+OOP pillars explain & write with code
+Abstraction code
+Runtime polymorphism - fun overriding code 
+Diamond problem code & slove it
+virtual destructor/ constructor
+coding que - take input 3*3 / n*n  matrix and print define output
+
