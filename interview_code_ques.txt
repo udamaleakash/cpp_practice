@@ -219,6 +219,9 @@ class Test {
     static const int b = 20;   // Valid
 };
 
+** A static variable is a variable that is created only once and retains its value between function calls.
+** A static data member belongs to the class, not to individual objects.
+** A static member function also belongs to the class, not to any object. You can call it without creating an object.
 **A static member function belongs to the class rather than an object. It can be called using the class name without creating an object. Since it has no this pointer, it can access only static data members and other static member functions. Static functions are commonly used for utility functions, object counters, and operations that are common to all objects of a class.
 
 -vector vs array diff.

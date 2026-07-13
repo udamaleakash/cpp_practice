@@ -117,11 +117,8 @@ void revise_map()
     cout << "\n===== MAP =====\n";
 
     map<int, int> mp;
-
     int arr[] = {23, 56, 34, 56, 34, 12, 90, 90, 23};
-
     int n = sizeof(arr) / sizeof(arr[0]);
-
     int i;
 
     for (i = 0; i < n; i++)
@@ -137,9 +134,7 @@ void revise_map()
     {
         cout << it->first << " ";
     }
-
     cout << endl;
-
     cout << "Frequency :\n";
 
     for (it = mp.begin(); it != mp.end(); ++it)
