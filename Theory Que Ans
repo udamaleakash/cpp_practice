@@ -222,6 +222,18 @@ Q4) Why do we use virtual functions?
 *Pure virtual functions:-
 -> A pure virtual function is a virtual function declared with = 0. It has no implementation in the base class and forces every derived class to provide its own implementation. A class containing at least one pure virtual function becomes an abstract class, meaning its objects cannot be created. Pure virtual functions are used to define a common interface and achieve runtime polymorphism.
 
+Virtual Function-
+Base class says: "I already have an implementation. You may override it if you want."
+
+Pure Virtual Function- virtual void display() = 0;
+Base class says: "I don't have an implementation for this behavior. You must implement it in the derived class."
+
+Q. When do you use a virtual function and when do you use a pure virtual function?
+answer:
+Virtual function: I use it when I need runtime polymorphism. The base class provides a default implementation, and derived classes can override it if needed. It is typically used with inheritance and base class pointers or references.
+
+Pure virtual function: I use it when I want to create an abstract class and force every derived class to provide its own implementation. This is useful when the base class defines only a common interface and cannot provide meaningful behavior itself.
+
 Q5) Difference between compile-time and runtime polymorphism?
 -> Compile-time polymorphism is achieved using function or operator overloading, where the compiler resolves the function call during compilation. Runtime polymorphism is achieved using virtual functions and inheritance, where the correct overridden function is selected at runtime using base class pointers or references. Compile-time polymorphism is faster, while runtime polymorphism is more flexible and commonly used in scalable real-world applications.
 

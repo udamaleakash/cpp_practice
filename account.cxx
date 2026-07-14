@@ -1,46 +1,59 @@
 #include <iostream>
-#include <string.h>
 using namespace std;
-// Here we study about friend function and friend class
 
-// Friend function can access private and protected members of class
+// virtual keyword
+/* virtual is useful only when all three conditions are met:
+
+There is inheritance ✅
+The derived class overrides the function ✅
+The function is called through a base class pointer or reference ✅
+If any one of these is missing, virtual has no visible effect.
+
+virtual works with base pointer refernce and
+checks actual object runtime
+
+
+
+
+
+Virtual Function-
+Base class says: "I already have an implementation. You may override it if you want."
+
+Pure Virtual Function- virtual void display() = 0;
+Base class says: "I don't have an implementation for this behavior. You must implement it in the derived class."
+
+Q. When do you use a virtual function and when do you use a pure virtual function?
+answer:
+Virtual function: I use it when I need runtime polymorphism. The base class provides a default implementation, and derived classes can override it if needed. It is typically used with inheritance and base class pointers or references.
+
+Pure virtual function: I use it when I want to create an abstract class and force every derived class to provide its own implementation. This is useful when the base class defines only a common interface and cannot provide meaningful behavior itself.
+
+
+*/
+
 class A
 {
-    int a = 10;
-    friend void show(A &obj); // friend function declaration
+public:
+    virtual void display()
+    {
+        cout << "Display from A" << endl;
+    }
 };
 
-void show(A &obj)
-{
-    cout << "Value of a: " << obj.a << endl;
-}
-
-// Friend class can access private and protected members of class
-class B; // forward declaration
-class C
-{
-    int c = 30;
-    friend class B; // friend class declaration
-};
-
-class B
+class B : public A
 {
 public:
-    void display(C &obj)
+    void display() override
     {
-        obj.c = 40; // B can access private member of C
-        cout << "Value of c: " << obj.c << endl;
+        cout << "Display from B" << endl;
     }
 };
 
 int main()
 {
-    A obj;
-    show(obj);
-
-    C obj1;
-    B obj2;
-    obj2.display(obj1);
-
-    return 0;
+    A *obj = new B(); // base pointer refernce
+    obj->display();
 }
+
+/*
+The virtual keyword is required to achieve runtime polymorphism. It only has an effect when a derived class overrides a base class function and the function is invoked through a base class pointer or reference. If we call the function directly using a derived object, the compiler already knows the object's type, so virtual makes no difference. */
