@@ -3,7 +3,7 @@
 using namespace std;
 // Here we study about friend function and friend class
 
-// Friend function can access private and protected members of class
+// First Friend function can access private and protected members of class
 class A
 {
     int a = 10;
@@ -15,7 +15,7 @@ void show(A &obj)
     cout << "Value of a: " << obj.a << endl;
 }
 
-// Friend class can access private and protected members of class
+// Now see, Friend class can access private and protected members of class
 class B; // forward declaration
 class C
 {
