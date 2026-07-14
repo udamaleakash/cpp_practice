@@ -351,10 +351,16 @@ Q. know about shell scripting lang
 
 ** nCiricle tech ,pune
 
-OOP pillars explain & write with code
-Abstraction code
-Runtime polymorphism - fun overriding code 
-Diamond problem code & slove it
-virtual destructor/ constructor
-coding que - take input 3*3 / n*n  matrix and print define output
+Q.OOP pillars explain & write with code
+Q.Abstraction code
+Q.Runtime polymorphism - fun overriding code 
+Q.Diamond problem code & slove it
+Q.virtual destructor/ constructor
+
+Q.
+coding que - take input 3*3 / n*n  matrix 
+1 2 3
+4 5 6
+7 8 9 
+print output  -> 1,2,3,6,9,8,7,4,5
 
