@@ -2,36 +2,29 @@
 #include <memory>
 using namespace std;
 
-class Test
-{
-public:
-    Test()
-    {
-        cout << "Constructor\n";
-    }
+/* Smart pointers automatically manage dynamically allocated memory. They prevent memory leaks, automatically release resources when objects go out of scope, and make exception-safe code easier to write. 
 
-    ~Test()
-    {
-        cout << "Destructor\n";
-    }
+Smart Pointer	Ownership	Copy Allowed	Auto Delete
+unique_ptr	Single owner	❌ No	✅ Yes
+shared_ptr	Multiple owners	✅ Yes	✅ Yes
+weak_ptr	No ownership	✅ Yes	❌ Doesn't own
 
-    void display()
-    {
-        cout << "Hello\n";
-    }
-};
+
+
+*/
 
 int main()
 {
-    // unique_ptr<Test> ptr = make_unique<Test>();
+    int *ptr = new int(50);
+    cout << *ptr << endl;
+    delete ptr;
 
-    // ptr->display();
+    unique_ptr<int> p1(new int(100)); // ownership cannot be shared.
+    cout << *p1 << endl;
 
-    int *p1 = new int(10);
-    unique_ptr<int> p2 = make_unique<int>(10);
-    shared_ptr<int> p3 = make_unique<int>(10);
-    shared_ptr<int> p4 = p3;
-    weak_ptr<int>p5 = p4;
+    shared_ptr<int> p2(new int(90));
+    shared_ptr<int> p3 = p2;
+    cout << *p2 << " " << *p3 << endl;
 
     return 0;
 }
