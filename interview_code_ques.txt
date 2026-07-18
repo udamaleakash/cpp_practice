@@ -364,3 +364,51 @@ coding que - take input 3*3 / n*n  matrix
 7 8 9 
 print output  -> 1,2,3,6,9,8,7,4,5
 
+
+
+Smart analytica pune
+Client interview 19 june 2026 3-4 pm
+
+Tell me yourself 
+
+Class scenario questions 
+Like a employee class and I want a declared variable like employee ID so each employee ID is different not change how that
+
+Constructor types
+Copy constructor 
+Multithreading, mutex, lockguard, race conditions 
+Explain project 
+Project challenges
+Debugging issues
+Why use map not vector
+SDLC you work on that
+What use tool to deploy code what the process
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
