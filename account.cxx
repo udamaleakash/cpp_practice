@@ -5,27 +5,42 @@
 #include <mutex>
 using namespace std;
 
-mutex m1;
-int counter = 0;
-
-
-void increment()
+class Animal
 {
-    for (int i = 0; i < 100000; i++)
+public:
+    virtual void sound() // Virtual Function
     {
-        counter++;
+        cout << "Animal makes a sound" << endl;
     }
+};
 
-    cout << counter << endl;
-}
+class Dog : public Animal
+{
+public:
+    void sound() override
+    {
+        cout << "Dog barks" << endl;
+    }
+};
+
+class Cat : public Animal
+{
+public:
+    void sound() override
+    {
+        cout << "Cat meows" << endl;
+    }
+};
 
 int main()
 {
-    thread t1(increment);
-    thread t2(increment);
-    // t1.join(); // join() is used to wait for the thread to complete before main thread continues. It will block the main thread until the thread t1 completes its execution.
-    // t2.join();
-    t1.detach(); // detach() is used to run the thread in background and main thread will not wait for it to complete. It will run independently.
-    t2.detach();
+    Animal *ptr1 = new Animal();
+    ptr1->sound();
+
+    Animal *ptr2 = new Dog();
+    ptr2->sound();
+
+    // Animal *ptr3 = dynamic_cast<Dog >;
+
     return 0;
 }
