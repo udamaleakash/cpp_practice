@@ -1,0 +1,43 @@
+
+
+** Interview Question about office project database **
+
+Q.1) What database did you use?
+-->
+"Our project used a custom database framework i.e CDATABASE. We didn't access the database using embedded SQL from the application. 
+Instead, we used the project's database APIs such as db_open(), find_rcd(), add_rcd(), and del_rcd() to perform database operations. The framework internally handled the storage, indexing, and record management."
+
+
+Q. 2) How was the database connected to your application?
+-->
+"During application startup, the application called db_open() with the configured database path and file list. This initialized the database and opened the required database files. Business modules then accessed data through APIs like find_rcd(), add_rcd(), update_related(), and del_rcd(). The database library managed file access, indexing, locking, and record retrieval internally. When the application terminated, it called db_cls() to close the database."
+
+The connectivity is file-based, not client-server SQL connectivity.
+The project provides its own database connectivity layer.
+We used custom database framework with SQL migration support.
+
+C/C++ Application
+        │
+        ▼
+Database API
+(db_open, find_rcd, add_rcd ...)
+        │
+        ▼
+Custom Database Engine
+        │
+        ▼
+Database Files + Index Files
+
+
+
+Q.3) Did you use SQL?"
+-->
+"Not in the application layer. Although our project contains SQL migration utilities, the runtime application itself used the project's custom database APIs rather than executing SQL queries directly."
+
+
+
+
+
+**Here's a polished version you can confidently give in an interview:-
+-->
+"In our project, we did not interact with the database using SQL queries directly. Instead, the application used our project's custom database framework, CDATABASE. The C/C++ application communicated with the database through the database APIs provided by this framework, such as db_open(), find_rcd(), add_rcd(), update_related(), del_rcd(), and db_cls(). These APIs internally handled database file access, indexing, and record management, so the application code did not directly connect to a traditional SQL client-server database."
