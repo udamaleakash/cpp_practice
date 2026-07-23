@@ -45,7 +45,7 @@ next
 break result
 next
 print i
-list - current line
+list/ where - current line
 info breakpoints
 info locals
 info args
