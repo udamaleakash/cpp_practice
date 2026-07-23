@@ -66,7 +66,7 @@ public:
 int main()
 {
     A *obj = new B(); // base pointer refernce
-    obj->display();
+    obj->display(); // Display from B
 
     // pure
     shape *s1 = new circle();
