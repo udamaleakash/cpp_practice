@@ -83,6 +83,22 @@ T square(T value)
     return (value * value);
 }
 
+// ----------- Class Template -------------
+template <typename T>
+class TemA
+{
+public:
+    T value;
+    TemA(T a)
+    {
+        value = a;
+    }
+    void show()
+    {
+        cout << value << endl;
+    }
+};
+
 int main()
 {
     // --------Compile time operator overloading------
@@ -109,6 +125,15 @@ int main()
     cout << max_tem(10.4, 20.5) << endl;
     cout << max_tem('a', 'b') << endl;
 
+    // ------ class template --------
+    TemA<int> t1(23); // compiler decides the type when you write. (if you write TemA t1(23) is ok but not good behaviour)
+    TemA<double> t2(23.56);
+    TemA<char> t3('H');
+    TemA<string> t4("Hello");
+    t1.show();
+    t2.show();
+    t3.show();
+    t4.show();
+
     return 0;
 }
-
