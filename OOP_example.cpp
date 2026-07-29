@@ -110,4 +110,5 @@ int main()
     Number n2(100);
     Number n3 = n1 + n2;
     cout<<n3.value;
+    // for better understanding of operator overloading / polymorphism see 28_july_01.cxx file
 }

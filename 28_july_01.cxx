@@ -1,5 +1,5 @@
 /*
-Polymorphism
+Polymorphism :- One interface Multiple forms.
 │
 ├── Compile Time (Static Binding)
 │   ├── Function Overloading
@@ -49,7 +49,7 @@ class BB : public AA
 {
 public:
     void show() override
-    /* override doesn't change the program's behavior. It asks the compiler to verify that the derived function really overrides a virtual function in the base class, helping catch mistakes like wrong names, parameter lists, or const qualifiers at compile time. */
+    /* override - doesn't change the program's behavior. It asks the compiler to verify that the derived function really overrides a virtual function in the base class, helping catch mistakes like wrong names, parameter lists, or const qualifiers at compile time. */
     {
         cout << "BB class, show called" << endl;
     }
