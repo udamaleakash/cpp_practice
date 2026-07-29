@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
-// Here we study about friend function and friend class
 
+// Here we study about friend function and friend class
 // First Friend function can access private and protected members of class
 class A
 {
@@ -44,3 +44,7 @@ int main()
 
     return 0;
 }
+
+// output:
+// Value of a: 10
+// Value of c: 40

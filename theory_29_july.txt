@@ -1,0 +1,39 @@
+Q. Virtual Constructor:-
+A virtual constructor is not supported in C++. Constructors cannot be virtual because an object must exist before virtual function dispatch can occur.
+
+Q. Virtual Destructor:-
+A virtual destructor ensures that when an object is deleted through a base-class pointer, both the derived and base destructors are called, preventing resource leaks.
+
+Q. Can constructors be virtual?
+
+Answer: No. Constructors cannot be virtual because virtual dispatch requires an already created object, while constructors are responsible for creating the object.
+
+Q. Can destructors be virtual?
+
+Answer: Yes. Virtual destructors ensure that deleting an object through a base-class pointer calls both the derived and base destructors.
+
+
+********
+vtable - stores the addresses of virtual functions.
+vptr - is a hidden pointer inside the object that points to the class's vtable., vptr points to the vtable.
+
+Q.What is a vtable?
+vtable (Virtual Table) is a compiler-generated table of function pointers used to implement runtime polymorphism.
+
+It is created only if a class has at least one virtual function.
+It stores the addresses of the virtual functions.
+
+Q.What is a vptr?
+(vptr is a hidden pointer inside the object that points to the class's vtable.)
+vptr (Virtual Pointer) is a hidden pointer that the compiler inserts into every object of a class that has virtual functions.
+Each object has one vptr.
+The vptr points to the class's vtable.
+
+
+vtable:-
+A vtable is a compiler-generated table that stores the addresses of a class's virtual functions. It is used for runtime polymorphism.
+
+vptr:-
+A vptr is a hidden pointer inside every object of a class with virtual functions. It points to the class's vtable, allowing the correct virtual function to be called at runtime.
+
+
