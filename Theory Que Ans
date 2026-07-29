@@ -282,6 +282,7 @@ Q13) Difference between shared_ptr, unique_ptr, weak_ptr?
   int main()
 {
     unique_ptr<int> p1(new int(10));
+    unique_ptr<int> p2(new int(10));
     cout << *p1;
     return 0;
 }

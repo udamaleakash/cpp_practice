@@ -1,5 +1,5 @@
 /*  Lambda Function:
-->  Lambda functions were introduced in C++11. They are anonymous functions (functions without a name) that you can define and use  directly where they're needed.
+-> Lambda functions were introduced in C++11. They are anonymous functions (functions without a name) that you can define and use  directly where they're needed.
 Think of them as small, temporary functions.
 
 Advantages:-

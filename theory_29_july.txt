@@ -17,23 +17,15 @@ Answer: Yes. Virtual destructors ensure that deleting an object through a base-c
 vtable - stores the addresses of virtual functions.
 vptr - is a hidden pointer inside the object that points to the class's vtable., vptr points to the vtable.
 
-Q.What is a vtable?
-vtable (Virtual Table) is a compiler-generated table of function pointers used to implement runtime polymorphism.
-
-It is created only if a class has at least one virtual function.
-It stores the addresses of the virtual functions.
-
-Q.What is a vptr?
-(vptr is a hidden pointer inside the object that points to the class's vtable.)
-vptr (Virtual Pointer) is a hidden pointer that the compiler inserts into every object of a class that has virtual functions.
-Each object has one vptr.
-The vptr points to the class's vtable.
-
-
 vtable:-
 A vtable is a compiler-generated table that stores the addresses of a class's virtual functions. It is used for runtime polymorphism.
 
 vptr:-
 A vptr is a hidden pointer inside every object of a class with virtual functions. It points to the class's vtable, allowing the correct virtual function to be called at runtime.
+
+One-line trick to remember
+vtable = Table of virtual function addresses
+vptr = Pointer to the vtable
+Together they enable runtime polymorphism.
 
 

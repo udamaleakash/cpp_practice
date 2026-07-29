@@ -1,9 +1,17 @@
 
+/* A Linked List is a linear data structure where elements (called nodes) are not stored in contiguous memory. */
 /* A linked list is a linear dynamic data structure where elements are stored in separate memory locations and connected using pointers.
 
 Each node contains:
 --data
 pointer to next node */
+
+/* Linked List vs Array
+Feature	|Array	    | Linked List
+Memory	|Contiguous	| Non-contiguous
+Size	|Fixed	    | Dynamic
+Random
+access	|   O(1)	| O(n) */
 
 #include <iostream>
 using namespace std;
@@ -58,7 +66,6 @@ Node *reverse(Node *head) // reverse link list
         prev = curr;
         curr = next;
     }
-
     return prev;
 }
 

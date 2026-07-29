@@ -1,113 +1,34 @@
 #include <iostream>
+#include <memory>
 using namespace std;
 
-// Abstraction = Hide complexity
-class Car
-{
-public:
-    void start()
-    {
-        engine();
-    }
-
-private:
-    void engine()
-    {
-        cout << "Engine started\n";
-    }
-};
-
-// Encapsulation = Protect data
-class Bank
-{
-private:
-    int balance = 0;
-
-public:
-    void deposit(int amount)
-    {
-        balance += amount;
-    }
-    void show()
-    {
-        cout << balance << endl;
-    }
-};
-
-// Inheritance
 class A
 {
 public:
-    void showA()
+    A()
     {
-        cout << "class show A\n";
+        cout << "constructor called\n";
+    }
+    ~A()
+    {
+        cout << "Destructor called\n";
     }
 };
-class B : public A
-{
-public:
-    void showB()
-    {
-        cout << "class show B\n";
-    }
-};
-
-// Polymorphism
-class sum
-{
-public:
-    void add(int a, int b)
-    {
-        cout << a + b << endl;
-    }
-    void add(double a, double b)
-    {
-        cout << a + b << endl;
-    }
-};
-
-// operator overloading
-class Number
-{
-
-public:
-    int value = 0;
-
-    Number(int n)
-    {
-        value = n;
-    }
-    Number operator+(Number obj)
-    {
-        return (value + obj.value);
-    }
-};
-
 int main()
 {
-    // Abstraction:- Showing only necessary information while hiding implementation details.
-    Car c;
-    c.start();
+    unique_ptr<A> p1 = make_unique<A>();
+    shared_ptr<A> s1 = make_shared<A>();
+    cout << s1.use_count() << endl;
 
-    // Encapsulation:- Wrapping data and functions together inside a class while restricting direct access using access specifiers.
-    Bank b;
-    b.deposit(2000);
-    b.show();
+    shared_ptr<A> s2 = s1;
+    cout << s1.use_count() << endl;
 
-    // Inheritance:- It Allows one class to reuse properties and methods of another class.
-    B b1;
-    b1.showA();
-    b1.showB();
+    weak_ptr<A> w1 = s1;
+    cout << s1.use_count() << endl;
+    if(auto temp = w1.lock()){
+        
+    }
 
-    // Polymorphism:- One interface Multiple forms.
-    /* Compile Time Polymorphism  */
-    // Function Overloading
-    sum s1;
-    s1.add(500, 200);
-    s1.add(500.45, 200.23);
-    // oprator overloading
-    Number n1(100);
-    Number n2(100);
-    Number n3 = n1 + n2;
-    cout<<n3.value;
+
+    return 0;  
 }

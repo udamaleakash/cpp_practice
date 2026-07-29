@@ -1,11 +1,12 @@
 
 
+/* A Linked List is a linear data structure where elements (called nodes) are not stored in contiguous memory. */
+
 // steps
 // 1 structure creation
 // 2 define head pointer and make it NULL
 // 3 insertion a) b) c) d)
-// 4 display
-
+// 4 Display
 
 #include <iostream>
 using namespace std;

@@ -147,8 +147,6 @@ memory is released properly
 
 // shared ptr works on reference count of pointer ends it willl 0 then delete ptr.
 // weak ptr use with shared ptr when shared ptr Reference count NOT 0 then issue like memory leak so use weak_ptr;
-
-
-//unique_ptr for ownership-based objects and shared_ptr where multiple modules accessed shared resources.
+// unique_ptr for ownership-based objects and shared_ptr where multiple modules accessed shared resources.
 
 

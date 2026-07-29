@@ -44,7 +44,6 @@ void increment_mutex()
 
 //---------------- Atomic ----------------
 atomic<int> atomicCounter(0);
-
 void increment_atomic()
 {
     atomicCounter++;
@@ -63,7 +62,7 @@ int main()
     t3.join();
     cout << "Counter = " << counter << endl;
 
-    cout << "\n===== Atomic =====\n";
+    cout << "\n===== Atomic =====\n"; //  atomic for simple operations on a single shared variable, such as incrementing a counter
     thread t4(increment_atomic);
     thread t5(increment_atomic);
     t4.join();
@@ -190,6 +189,10 @@ Mutex
 - Slightly slower
 - Thread blocking possible
 - Protects multiple variables
+
+Use atomic for simple operations on a single shared variable, such as incrementing a counter or setting a flag. It is faster because it avoids locking.
+
+Use mutex when multiple operations or multiple shared variables must be accessed together as one critical section.
 
 ------------------------------------------------------------
 

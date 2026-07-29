@@ -1,5 +1,6 @@
 #include <iostream>
-#include <climits> // we can use here string.h also but for better we use this
+#include <climits> 
+#include <cstring> // we can use here string.h also but for better we use this
 #include <vector>
 #include <algorithm>
 using namespace std;
