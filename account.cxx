@@ -1,34 +1,25 @@
 #include <iostream>
-#include <memory>
+#include <cstring>
+#include <unordered_map>
 using namespace std;
 
-class A
+void freq(char str[], int len)
 {
-public:
-    A()
+    unordered_map<char, int> freq;
+    for (int i = 0; i < len; i++)
     {
-        cout << "constructor called\n";
+        freq[str[i]]++;
     }
-    ~A()
+    unordered_map<char, int>::iterator it1;
+    for (it1 = freq.begin(); it1 != freq.end(); it1++)
     {
-        cout << "Destructor called\n";
+        cout << it1->first << " " << it1->second << endl;
     }
-};
+}
 int main()
 {
-    unique_ptr<A> p1 = make_unique<A>();
-    shared_ptr<A> s1 = make_shared<A>();
-    cout << s1.use_count() << endl;
-
-    shared_ptr<A> s2 = s1;
-    cout << s1.use_count() << endl;
-
-    weak_ptr<A> w1 = s1;
-    cout << s1.use_count() << endl;
-    if(auto temp = w1.lock()){
-        
-    }
-
-
-    return 0;  
+    char str[] = {"Hello"};
+    int len = strlen(str);
+    freq(str, len);
+    return 0;
 }
