@@ -1,25 +1,78 @@
 #include <iostream>
-#include <cstring>
-#include <unordered_map>
 using namespace std;
 
-void freq(char str[], int len)
+class TransactionIdGenerator
 {
-    unordered_map<char, int> freq;
-    for (int i = 0; i < len; i++)
+private:
+    int transactionId;
+
+    TransactionIdGenerator()
     {
-        freq[str[i]]++;
+        transactionId = 1000;
+        cout << "Transaction ID Generator Started\n";
     }
-    unordered_map<char, int>::iterator it1;
-    for (it1 = freq.begin(); it1 != freq.end(); it1++)
+
+public:
+    TransactionIdGenerator(const TransactionIdGenerator&) = delete;
+    TransactionIdGenerator& operator=(const TransactionIdGenerator&) = delete;
+
+    static TransactionIdGenerator& getInstance()
     {
-        cout << it1->first << " " << it1->second << endl;
+        static TransactionIdGenerator obj;
+        return obj;
     }
-}
+
+    int generateId()
+    {
+        return ++transactionId;
+    }
+};
+
+// ATM Module
+class ATM
+{
+public:
+    void withdraw()
+    {
+        int id = TransactionIdGenerator::getInstance().generateId();
+
+        cout << "ATM Withdrawal, Transaction ID = " << id << endl;
+    }
+};
+
+// UPI Module
+class UPI
+{
+public:
+    void transfer()
+    {
+        int id = TransactionIdGenerator::getInstance().generateId();
+
+        cout << "UPI Transfer, Transaction ID = " << id << endl;
+    }
+};
+
+// NEFT Module
+class NEFT
+{
+public:
+    void sendMoney()
+    {
+        int id = TransactionIdGenerator::getInstance().generateId();
+
+        cout << "NEFT Transfer, Transaction ID = " << id << endl;
+    }
+};
+
 int main()
 {
-    char str[] = {"Hello"};
-    int len = strlen(str);
-    freq(str, len);
+    ATM atm;
+    UPI upi;
+    NEFT neft;
+
+    atm.withdraw();
+    upi.transfer();
+    neft.sendMoney();
+
     return 0;
 }
