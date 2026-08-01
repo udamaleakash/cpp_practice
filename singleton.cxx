@@ -8,7 +8,6 @@ using namespace std;
  2. Static method should be created which will return the object of that class.
  Cant create object of that class using new keyword.
 
-
  Constructor called only once.
  Addresses are same.
 
