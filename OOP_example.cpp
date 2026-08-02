@@ -4,16 +4,16 @@ using namespace std;
 // Abstraction = Hide complexity
 class Car
 {
-public:
-    void start()
-    {
-        engine();
-    }
-
 private:
     void engine()
     {
         cout << "Engine started\n";
+    }
+
+public:
+    void start()
+    {
+        engine();
     }
 };
 
@@ -109,6 +109,7 @@ int main()
     Number n1(100);
     Number n2(100);
     Number n3 = n1 + n2;
-    cout<<n3.value;
-    // for better understanding of operator overloading / polymorphism see ploymorphism_template.cxx file
+    cout << n3.value;
+    // Runtime Polymorphism - Function Overriding
+    // for better understanding this & operator overloading / polymorphism see ploymorphism_template.cxx file
 }

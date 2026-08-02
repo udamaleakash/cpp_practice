@@ -6,14 +6,18 @@ using namespace std;
 // First Friend function can access private and protected members of class
 class A
 {
-    int a = 10;
-    friend void show(A &obj); // friend function declaration
+private:
+    int x = 10;
+
+    friend void show();
 };
 
-void show(A &obj)
+void show()
 {
-    cout << "Value of a: " << obj.a << endl;
+    A obj;                 // Create object
+    cout << obj.x << endl; // Access private member
 }
+
 
 // Now see, Friend class can access private and protected members of class
 class B; // forward declaration
@@ -35,8 +39,7 @@ public:
 
 int main()
 {
-    A obj;
-    show(obj);
+    show();
 
     C obj1;
     B obj2;

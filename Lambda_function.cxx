@@ -48,7 +48,7 @@ No separate function is needed.
 using namespace std;
 int main()
 {
-    vector<int> v = {1, 2, 3, 4, 5};
+    vector<int> v = {23, 56, 32, 12, 89, 23};
 
     // 1)
     sort(v.begin(), v.end(),
