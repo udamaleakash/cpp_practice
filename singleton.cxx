@@ -3,7 +3,7 @@ using namespace std;
 
 /*
 
- Singlton class means only one object of that class can be created.
+ Singelton class means only one object of that class can be created.
  1. Constructor of that class should be private.
  2. Static method should be created which will return the object of that class.
  Cant create object of that class using new keyword.

@@ -9,7 +9,15 @@ A smart pointer that allows multiple owners of the same object using reference c
 
 weak_ptr:-
 
-A smart pointer that observes an object managed by a shared_ptr without owning it. It does not increase the reference count and is mainly used to avoid circular references. 
+A smart pointer that observes an object managed by a shared_ptr without owning it. It does not increase the reference count and is mainly used to avoid circular references.
+
+
+/* Smart pointers automatically manage dynamically allocated memory. They prevent memory leaks, automatically release resources when objects go out of scope, and make exception-safe code easier to write.
+
+Smart Pointer	Ownership	Copy Allowed	Auto Delete
+unique_ptr	Single owner	❌ No	✅ Yes
+shared_ptr	Multiple owners	✅ Yes	✅ Yes
+weak_ptr	No ownership	✅ Yes	❌ Doesn't own
 */
 
 #include <iostream>
@@ -34,23 +42,45 @@ public:
         cout << "Show Function" << endl;
     }
 };
+// below is shared classes e.g
+class A
+{
+public:
+    void show()
+    {
+        cout << "A class call here\n";
+    }
+};
+
+class B
+{
+    shared_ptr<A> ptr_a;
+
+public:
+    B(shared_ptr<A> e)
+    {
+        ptr_a = e;
+    }
+    void display()
+    {
+        ptr_a->show();
+    }
+};
 
 int main()
 {
     cout << "===== unique_ptr =====" << endl;
-
     unique_ptr<Test> up = make_unique<Test>();
     up->show();
 
     // unique_ptr<Test> up2 = up;      // ❌ Not Allowed
 
-    unique_ptr<Test> up2 = move(up);   // Transfer ownership
+    unique_ptr<Test> up2 = move(up); // Transfer ownership
 
     if (up == nullptr)
         cout << "up is NULL after move" << endl;
 
     up2->show();
-
 
     cout << "\n===== shared_ptr =====" << endl;
 
@@ -62,17 +92,25 @@ int main()
 
     cout << "Count = " << sp1.use_count() << endl;
 
-
     cout << "\n===== weak_ptr =====" << endl;
 
     weak_ptr<Test> wp = sp1;
 
-    cout << "Count = " << sp1.use_count() << endl;   // Still 2
+    cout << "Count = " << sp1.use_count() << endl; // Still 2
 
     if (auto temp = wp.lock())
     {
         temp->show();
     }
+
+    // shared class e.g.
+    cout << "shared class e.g->\n";
+    shared_ptr<A> a = make_shared<A>();
+    cout << a.use_count() << endl; // 1
+
+    B b1(a);
+    b1.display();
+    cout << a.use_count() << endl; // 2
 
     cout << "\nEnd of main()" << endl;
 
