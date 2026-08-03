@@ -24,7 +24,7 @@ public:
         name = new char[strlen(other.name) + 1]; // here deep copy is done by allocating new memory for the name and copying the content from the other object's name.
         strcpy(name, other.name);
     }
-    student(const student &other) // shallow copy
+    student(const student &other) // Shallow copy
     {
         cout << "Copy Constructor called (shallow copy)" << endl;
         strcpy(name, other.name); // here shallow copy is done by copying the pointer value from the other object's name, which means both objects will point to the same memory location.

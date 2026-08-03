@@ -9,39 +9,15 @@
 
 using namespace std;
 
-class A
-{
-public:
-    void show()
-    {
-        cout << "A class call here\n";
-    }
-};
-
-class B
-{
-    shared_ptr<A> ptr_a;
-
-public:
-    B(shared_ptr<A> e)
-    {
-        ptr_a = e;
-    }
-    void display()
-    {
-        ptr_a->show();
-    }
-};
-
 int main()
 {
-    shared_ptr<A> a = make_shared<A>();
-    a->show();
-    cout << a.use_count()<<endl;
+    int *ptr = (int *)malloc(10 * sizeof(int));
+    for (int i = 0; i <= 9; i++)
+    {
+        ptr[i] = i + 1;
+        cout << ptr[i] << " ";
+    }
 
-    B b1(a);
-    b1.display();
-
-    cout << a.use_count()<<endl;
+    free(ptr);
     return 0;
 }
