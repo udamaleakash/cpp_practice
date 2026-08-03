@@ -18,11 +18,16 @@ public:
     }
 
     // 1) copy constructor
-    student(const student &other)
+    student(const student &other) // Deep copy
     {
-        cout << "Copy Constructor called" << endl;
-        name = new char[strlen(other.name) + 1];
+        cout << "Copy Constructor called (deep copy)" << endl;
+        name = new char[strlen(other.name) + 1]; // here deep copy is done by allocating new memory for the name and copying the content from the other object's name.
         strcpy(name, other.name);
+    }
+    student(const student &other) // shallow copy
+    {
+        cout << "Copy Constructor called (shallow copy)" << endl;
+        strcpy(name, other.name); // here shallow copy is done by copying the pointer value from the other object's name, which means both objects will point to the same memory location.
     }
     // 2) copy Assignment operator
     student &operator=(const student &other)
