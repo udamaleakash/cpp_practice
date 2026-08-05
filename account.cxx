@@ -1,42 +1,65 @@
 #include <iostream>
-#include <string>
-#include <set>
-#include <vector>
-#include <map>
-#include <unordered_map>
-#include <list>
 #include <memory>
-
 using namespace std;
+
+class B; // Forward declaration
+class A
+{
+public:
+    shared_ptr<B> ptrB;
+
+    A()
+    {
+        cout << "A Constructor\n";
+    }
+
+    ~A()
+    {
+        cout << "A Destructor\n";
+    }
+};
+
+class B
+{
+public:
+    shared_ptr<A> ptrA;
+
+    B()
+    {
+        cout << "B Constructor\n";
+    }
+
+    ~B()
+    {
+        cout << "B Destructor\n";
+    }
+};
+enum class Akash
+{
+    Clever,
+    Intelligent,
+    Smart,
+    Rich
+};
+
+template <typename T>
+T add(T a, T b)
+{
+    return a + b;
+}
 
 int main()
 {
-    int *ptr = (int *)malloc(10 * sizeof(int)); // here , using pointer store 10 elements & print dynamic memory allocate
-    for (int i = 0; i <= 9; i++)
+    auto result = add(10, 20);
+    cout << result << endl;
+    // Genric Lambda Function
+    auto add = [](auto a, auto b)
     {
-        ptr[i] = i + 1;
-        cout << ptr[i] << " ";
-    }
-    free(ptr);
+        return a + b;
+    };
 
-    /* A void* is a generic pointer that can store the address of any data type, but it cannot be dereferenced without first casting it to the correct pointer type. */
-    int x = 50;
-    void *ptr1 = &x;
-    cout << *(int *)ptr1 << endl;
+    cout << add(10, 20);   // int
+    cout << add(1.5, 2.5); // double
 
-    int a = 10;
-    float b = 12.5;
-    char c = 'A';
-
-    void *ptr2;
-
-    ptr2 = &a;
-    cout << *(int *)ptr2 << endl;
-
-    ptr2 = &b;
-    cout << *(float *)ptr2 << endl;
-
-    ptr2 = &c;
-    cout << *(char *)ptr2 << endl;
     return 0;
 }

@@ -36,7 +36,7 @@ capacity()	Allocated storage */
     v.insert(v.begin(), 11);
     v.insert(v.end(), 99);
     v.erase(v.begin() + 2);
-    sort(v.begin(), v.end());
+    // sort(v.begin(), v.end());
     for (int a : v)
     {
         cout << a << " ";

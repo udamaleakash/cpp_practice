@@ -67,6 +67,42 @@ public:
     }
 };
 
+// e.g. of using shared ptr class and also weak ptr class
+
+class BB;
+class AA
+{
+public:
+    shared_ptr<BB> ptrB;
+
+    AA()
+    {
+        cout << "AA Constructor\n";
+    }
+
+    ~AA()
+    {
+        cout << "AA Destructor\n";
+    }
+};
+
+class BB
+{
+public:
+    // shared_ptr<AA> ptrA;
+    weak_ptr<AA> ptrA; // to prevent circular reference, we use weak_ptr here
+
+    BB()
+    {
+        cout << "BB Constructor\n";
+    }
+
+    ~BB()
+    {
+        cout << "BB Destructor\n";
+    }
+};
+
 int main()
 {
     cout << "===== unique_ptr =====" << endl;
@@ -112,7 +148,33 @@ int main()
     b1.display();
     cout << a.use_count() << endl; // 2
 
-    cout << "\nEnd of main()" << endl;
+    // Now we see shared_ptr and weak_ptr class e.g. to avoid circular reference
+    cout << "\n===== shared_ptr and weak_ptr class e.g. =====" << endl;
+    // sharing ptr class and weak ptr class
+    shared_ptr<AA> objA = make_shared<AA>();
+    shared_ptr<BB> objB = make_shared<BB>();
+
+    objA->ptrB = objB;
+    objB->ptrA = objA;
+
+    cout << "AA Reference Count = " << objA.use_count() << endl;
+    cout << "BB Reference Count = " << objB.use_count() << endl;
+
+    // cout << "\nEnd of main()" << endl;
 
     return 0;
 }
+
+/* Interview Tip
+
+If the interviewer only says:
+
+"Write an example of shared_ptr."
+
+Write the simple p1/p2 example.
+
+If they say:
+
+"Write a class example using shared_ptr."
+
+Then your AA/BB class example is appropriate, and explaining the circular dependency plus the weak_ptr solution will often earn extra points because it demonstrates a deeper understanding of smart pointers. */
