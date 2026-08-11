@@ -3,13 +3,14 @@
 using namespace std;
 
 int main()
-{
+{ 
     // 1. create a vector
     vector<int> v;
     // 2. add in vector
     v.push_back(10);
     v.push_back(20);
     v.push_back(30);
+    
 
     // 3. print vector
     // index

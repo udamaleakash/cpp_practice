@@ -66,7 +66,7 @@ public:
     }
 };
 
-// operator overloading
+// operator overloading : Operator overloading means giving a special meaning to an existing operator
 class Number
 {
 
@@ -105,6 +105,7 @@ int main()
     sum s1;
     s1.add(500, 200);
     s1.add(500.45, 200.23);
+
     // oprator overloading
     Number n1(100);
     Number n2(100);

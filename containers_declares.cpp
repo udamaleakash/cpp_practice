@@ -43,9 +43,9 @@ int main()
     list<int> l = {23, 56, 56, 78, 23, 4, 90};
     list<int> l2 = {23, 56, 56, 78, 23, 4, 90};
 
-    for (auto t : l)
+    for (auto t : m3)
     {
-        // cout << t.first << "," << t.second << endl;
+        cout << t.first << "," << t.second << endl;
         // cout << t << endl;
     }
     for (auto &[key, value] : m) // structural binding printing
