@@ -2,64 +2,51 @@
 #include <memory>
 using namespace std;
 
-class B; // Forward declaration
-class A
+class Engine
 {
 public:
-    shared_ptr<B> ptrB;
-
-    A()
+    void start()
     {
-        cout << "A Constructor\n";
+        cout << "Engine started\n";
     }
 
-    ~A()
+    ~Engine()
     {
-        cout << "A Destructor\n";
+        cout << "Engine Destructor\n";
     }
 };
 
-class B
+class Car
 {
+private:
+    shared_ptr<Engine> engine;
+
 public:
-    shared_ptr<A> ptrA;
-
-    B()
+    Car(shared_ptr<Engine> e)
     {
-        cout << "B Constructor\n";
+        engine = e;
     }
 
-    ~B()
+    void drive()
     {
-        cout << "B Destructor\n";
+        engine->start();
+        cout << "Car is driving\n";
     }
 };
-enum class Akash
-{
-    Clever,
-    Intelligent,
-    Smart,
-    Rich
-};
-
-template <typename T>
-T add(T a, T b)
-{
-    return a + b;
-}
 
 int main()
 {
-    auto result = add(10, 20);
-    cout << result << endl;
-    // Genric Lambda Function
-    auto add = [](auto a, auto b)
-    {
-        return a + b;
-    };
+    shared_ptr<Engine> e = make_shared<Engine>();
 
-    cout << add(10, 20);   // int
-    cout << add(1.5, 2.5); // double
+    cout << "Reference count: "
+         << e.use_count() << endl;       // 1
+
+    Car c1(e);
+
+    cout << "Reference count: "
+         << e.use_count() << endl;       // 2
+
+    c1.drive();
 
     return 0;
 }

@@ -3,10 +3,10 @@ using namespace std;
 
 /*
 
- Singelton class means only one object of that class can be created.
+ Singleton class means only one object of that class can be created.
  1. Constructor of that class should be private.
  2. Static method should be created which will return the object of that class.
- Cant create object of that class using new keyword.
+ Can't create object of that class using new keyword.
 
  Constructor called only once.
  Addresses are same.
@@ -17,6 +17,7 @@ using namespace std;
 
 class Akash
 {
+private:
     Akash() // 1.
     {
         cout << "constructor called" << endl;
@@ -71,7 +72,7 @@ BELOW IS REAL PROJECT BAED E.G.
 
 "In a banking application, multiple modules like ATM, UPI, and NEFT need unique transaction IDs. I would implement a TransactionIdGenerator as a Singleton so that only one counter exists in the application. Every module calls TransactionIdGenerator::getInstance().generateId(), ensuring IDs like 1001, 1002, 1003 are generated sequentially without duplicates. The constructor is private, the instance is created through a static method, and copy operations are deleted to ensure only one instance exists."
 
-Banking Application
+            Banking Application
                      |
      ------------------------------------
      |               |                  |
@@ -102,7 +103,7 @@ private:
     }
 
 public:
-  
+
     static TransactionIdGenerator& getInstance()
     {
         static TransactionIdGenerator obj;

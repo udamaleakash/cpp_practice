@@ -1,3 +1,7 @@
+
+
+//  Smart pointers automatically manage dynamically allocated memory. They prevent memory leaks, automatically release resources when objects go out of scope, and make exception-safe code easier to write.
+
 /*
  unique_ptr:-
 
@@ -12,7 +16,7 @@ weak_ptr:-
 A smart pointer that observes an object managed by a shared_ptr without owning it. It does not increase the reference count and is mainly used to avoid circular references.
 
 
-/* Smart pointers automatically manage dynamically allocated memory. They prevent memory leaks, automatically release resources when objects go out of scope, and make exception-safe code easier to write.
+/*
 
 Smart Pointer	Ownership	Copy Allowed	Auto Delete
 unique_ptr	Single owner	❌ No	✅ Yes
@@ -139,7 +143,7 @@ int main()
         temp->show();
     }
 
-    // shared class e.g.
+    //  shared class e.g.
     cout << "shared class e.g->\n";
     shared_ptr<A> a = make_shared<A>();
     cout << a.use_count() << endl; // 1
@@ -165,13 +169,90 @@ int main()
     return 0;
 }
 
+
+
+
+/* 
+perfect shared ptr class e.g. Engine & Car
+
+#include <iostream>
+#include <memory>
+using namespace std;
+
+class Engine
+{
+public:
+    void start()
+    {
+        cout << "Engine started\n";
+    }
+
+    ~Engine()
+    {
+        cout << "Engine Destructor\n";
+    }
+};
+
+class Car
+{
+private:
+    shared_ptr<Engine> engine;
+
+public:
+    Car(shared_ptr<Engine> e)
+    {
+        engine = e;
+    }
+
+    void drive()
+    {
+        engine->start();
+        cout << "Car is driving\n";
+    }
+};
+
+int main()
+{
+    shared_ptr<Engine> e = make_shared<Engine>();
+
+    cout << "Reference count: "
+         << e.use_count() << endl;       // 1
+
+    Car c1(e);
+
+    cout << "Reference count: "
+         << e.use_count() << endl;       // 2
+
+    c1.drive();
+
+    return 0;
+}
+
+Both e and c1.engine own the same Engine object.
+
+Therefore:
+
+e.use_count() = 1
+
+After Car c1(e):
+
+e.use_count() = 2
+
+After both pointers are destroyed:
+
+use_count = 0
+        ↓
+Engine automatically destroyed
+*/
+
+
 /* Interview Tip
 
 If the interviewer only says:
 
 "Write an example of shared_ptr."
 
-Write the simple p1/p2 example.
+Write the simple sp1, sp2 example.
 
 If they say:
 
