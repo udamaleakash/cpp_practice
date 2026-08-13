@@ -328,66 +328,71 @@ Cobj;
 obj.x();
  // C
 
-Q. what is runtime polymorphism
-Q. what is pure virtual is_function -> why we need
-Q. What is friend is_function
-Q. multiple inheritance
-Q. work on cloud techno.?
-Q. know about shell scripting lang
- 
+** Vivicta - kharadi pune**
 
+Write a code like below input - shape, circle, square class and write ouput in main() write Display_area function
+to print respectively passing obj functions.
 
-** prititi techo.
+->
 
-1. tell me yourself and project
-2. which version c++ use - 11/14
-3. lambda experssion
-4. polymorphism
-5. what is runtime poly use in project
-6. multithreading - race condition
-7. rvalue ref or type
-8. solid princliple
-9. desing pattern
-10. write code singleton class make it thread safe
-11. are you work with Javascrpit & cloud tech?
-12. STL container use - time complxity
-13. sort - algoritihm, bubble sort, heap sort
+#include <iostream>
+using namespace std;
 
+class Shape
+{
+public:
+    virtual void display()
+    {
+        cout << "Shape Area" << endl;
+    }
 
-** nCiricle tech ,pune
+    virtual ~Shape() {}
+};
 
-Q.OOP pillars explain & write with code
-Q.Abstraction code
-Q.Runtime polymorphism - fun overriding code 
-Q.Diamond problem code & slove it
-Q.virtual destructor/ constructor
+class Circle : public Shape
+{
+private:
+    int area = 100;
 
-Q.
-coding que - take input 3*3 / n*n  matrix 
-1 2 3
-4 5 6
-7 8 9 
-print output  -> 1,2,3,6,9,8,7,4,5
+public:
+    void display() override
+    {
+        cout << "Circle Area: " << area << endl;
+    }
+};
 
+class Square : public Shape
+{
+private:
+    int area = 200;
 
+public:
+    void display() override
+    {
+        cout << "Square Area: " << area << endl;
+    }
+};
 
-Smart analytica pune
-Client interview 19 june 2026 3-4 pm
+// Display_area function
+void Display_area(Shape* obj)
+{
+    obj->display();
+}
 
-Tell me yourself 
+int main()
+{
+    Circle c;
+    Square s;
 
-Class scenario questions 
-Like a employee class and I want a declared variable like employee ID so each employee ID is different not change how that
+    Display_area(&c);
+    Display_area(&s);
 
-Constructor types
-Copy constructor 
-Multithreading, mutex, lockguard, race conditions 
-Explain project 
-Project challenges
-Debugging issues
-Why use map not vector
-SDLC you work on that
-What use tool to deploy code what the process
+    return 0;
+}
+
+// output - > 
+// Circle Area: 100
+// Square Area: 200
 
 
 

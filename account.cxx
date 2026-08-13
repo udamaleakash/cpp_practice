@@ -1,52 +1,54 @@
 #include <iostream>
-#include <memory>
 using namespace std;
 
-class Engine
+class Shape
 {
 public:
-    void start()
+    virtual void display()
     {
-        cout << "Engine started\n";
+        cout << "Shape Area" << endl;
     }
 
-    ~Engine()
-    {
-        cout << "Engine Destructor\n";
-    }
+    virtual ~Shape() {}
 };
 
-class Car
+class Circle : public Shape
 {
 private:
-    shared_ptr<Engine> engine;
+    int area = 100;
 
 public:
-    Car(shared_ptr<Engine> e)
+    void display() override
     {
-        engine = e;
-    }
-
-    void drive()
-    {
-        engine->start();
-        cout << "Car is driving\n";
+        cout << "Circle Area: " << area << endl;
     }
 };
+
+class Square : public Shape
+{
+private:
+    int area = 200;
+
+public:
+    void display() override
+    {
+        cout << "Square Area: " << area << endl;
+    }
+};
+
+// Displayarea function
+void Displayarea(Shape* obj)
+{
+    obj->display();
+}
 
 int main()
 {
-    shared_ptr<Engine> e = make_shared<Engine>();
+    Circle c;
+    Square s;
 
-    cout << "Reference count: "
-         << e.use_count() << endl;       // 1
-
-    Car c1(e);
-
-    cout << "Reference count: "
-         << e.use_count() << endl;       // 2
-
-    c1.drive();
+    Displayarea(&c);
+    Displayarea(&s);
 
     return 0;
 }
