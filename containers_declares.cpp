@@ -66,7 +66,7 @@ int main()
         // i want find 23 in map and print its value
         // using map find function
     }
-    // No for next part refer file vector_1.cxx
+    // Now for next part refer file vector_1.cxx
 
     return 0;
 }

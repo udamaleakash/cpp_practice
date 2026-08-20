@@ -18,7 +18,7 @@ struct Node
     Node *next;
 };
 /* Why Node* &head ? in below
--> &head means - pass by reference & original head chnages
+-> &head means - pass by reference & original head changes
 without & changes it will local copy, original list will not update */
 void insert(Node *&head, int value)
 {

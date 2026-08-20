@@ -1,0 +1,5 @@
+1. why we need mnaullay rule of 3/5 write?
+-> 
+"I manually implement special member functions when the class owns a resource and the compiler-generated shallow copy or default behavior is not sufficient. In modern C++, I prefer RAII and Rule of 0 using smart pointers and standard containers."
+
+
