@@ -1,21 +1,22 @@
 #include <iostream>
+#define DEBUG // defines DEBUG before compilation.
+
 using namespace std;
-
-
-
-// Displayarea function
-void Displayarea(Shape* obj)
-{
-    obj->display();
-}
+#define MAX 200
 
 int main()
 {
-    Circle c;
-    Square s;
+#ifdef DEBUG // checks whether DEBUG is defined.
+    cout << "Debug mode\n";
+#endif
+    // Since DEBUG is defined, the code inside #ifdef is compiled.
 
-    Displayarea(&c);
-    Displayarea(&s);
-
+#if MAX == 100
+    cout << "Max defined\n";
+#elif MAX == 200
+    cout << "Max not defined\n";
+#else
+    cout << "Max not defined\n";
+#endif
     return 0;
 }

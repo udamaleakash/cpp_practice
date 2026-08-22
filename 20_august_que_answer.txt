@@ -2,4 +2,103 @@
 -> 
 "I manually implement special member functions when the class owns a resource and the compiler-generated shallow copy or default behavior is not sufficient. In modern C++, I prefer RAII and Rule of 0 using smart pointers and standard containers."
 
+(Intizilan pune)
+2. what is preprocessor?
+-> The preprocessor is a programme that runs before the actual compilation of your c++ code.
+its line starts with # called preprocessor directives.
 
+when we use this? #ifdef, #if, #else, #elif
+-> Conditional compilation is used when we want certain code to be compiled only under specific conditions, such as debugging, different operating systems, versions, or optional features.
+
+#define (macro) performs text replacement before compilation.
+e.g->
+#include <iostream>
+#define PI 3.14
+#define SIX (5 + 1)
+#define NINE (8 + 1)
+#define square(x) ((x) * (x))
+using namespace std;
+
+int main()
+{
+    cout << PI << endl;//3.14
+    cout << SIX * NINE << endl;//54
+    cout << square(5);//25
+
+    return 0;
+}
+
+
+Now,
+#ifdef, #ifndef, #endif
+These are used for conditional compilation.
+e.g.
+#include <iostream>
+#define DEBUG //defines DEBUG before compilation.
+
+using namespace std;
+
+int main()
+{
+#ifdef DEBUG // checks whether DEBUG is defined.
+    cout << "Debug mode";
+#endif
+//Since DEBUG is defined, the code inside #ifdef is compiled.
+    return 0;
+}
+
+***
+#ifdef = IF DEFINED
+#ifndef = IF NOT DEFINED
+#endif = END IF
+
+e.g.
+#define DEBUG 0
+#if DEBUG
+    cout << "Debug ON";
+#else
+    cout << "Debug OFF";
+#endif
+
+#if vs normal if
+Normal if is handled during program execution
+Preprocessor #if is handled before compilation
+
+e.g.
+#define MAX 200
+#if MAX == 100
+    cout << "Max defined\n";
+#elif MAX == 200
+    cout << "Max not defined\n";
+#else
+    cout << "Max not defined\n";
+#endif
+
+So, Preprocessor → before compilation → conditional code is included/excluded
+
+| Directive  | Meaning                 |
+| ---------- | ----------------------- |
+| `#include` | Include header/file     |
+| `#define`  | Define macro            |
+| `#ifdef`   | If macro is defined     |
+| `#ifndef`  | If macro is NOT defined |
+| `#if`      | Conditional compilation |
+| `#else`    | Alternative condition   |
+| `#endif`   | End conditional block   |
+
+Preprocessor directives start with # and are processed before the compiler compiles the C++ code.
+
+
+Q3.What recent C++ concepts have you worked with?”
+
+You can give this answer:->
+
+“In my recent banking project, I worked mainly on the reconciliation and CTS modules. From a C++ perspective, I worked extensively with STL containers, multithreading, memory management and debugging.”
+
+“In reconciliation, we compared transactions between ledger and statement sources. I used key-value containers to efficiently identify transactions using transaction/reference numbers and stored related information such as amount and date. I selected the container based on the access requirement—for example, map when ordered keys were useful, and unordered_map when the primary requirement was fast lookup.”
+
+“After identifying the corresponding records, we applied multiple business rules such as amount matching, date validation, duplicate detection, unique reference validation and tolerance checks. Based on these validations, transactions were classified as matched or exceptions.”
+
+“For higher-volume processing, I also worked with multithreading concepts where independent workloads can be processed concurrently. I paid attention to synchronization when shared data was involved, using mechanisms such as mutex and lock guards.”
+
+“For reliability, I used GDB and Valgrind during debugging and memory analysis. So my focus was not just on implementing the C++ logic, but also on performance, memory safety, concurrency and production reliability.”
