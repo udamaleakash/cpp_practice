@@ -102,3 +102,9 @@ You can give this answer:->
 “For higher-volume processing, I also worked with multithreading concepts where independent workloads can be processed concurrently. I paid attention to synchronization when shared data was involved, using mechanisms such as mutex and lock guards.”
 
 “For reliability, I used GDB and Valgrind during debugging and memory analysis. So my focus was not just on implementing the C++ logic, but also on performance, memory safety, concurrency and production reliability.”
+
+**
+map → faster lookup
+Multithreading → concurrent processing
+Together → better overall performance for a suitable large workload.
+
