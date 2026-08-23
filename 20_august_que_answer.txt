@@ -97,14 +97,47 @@ You can give this answer:->
 
 “In reconciliation, we compared transactions between ledger and statement sources. I used key-value containers to efficiently identify transactions using transaction/reference numbers and stored related information such as amount and date. I selected the container based on the access requirement—for example, map when ordered keys were useful, and unordered_map when the primary requirement was fast lookup.”
 
-“After identifying the corresponding records, we applied multiple business rules such as amount matching, date validation, duplicate detection, unique reference validation and tolerance checks. Based on these validations, transactions were classified as matched or exceptions.”
+for better refer Recoile_module.cxx
 
-“For higher-volume processing, I also worked with multithreading concepts where independent workloads can be processed concurrently. I paid attention to synchronization when shared data was involved, using mechanisms such as mutex and lock guards.”
 
-“For reliability, I used GDB and Valgrind during debugging and memory analysis. So my focus was not just on implementing the C++ logic, but also on performance, memory safety, concurrency and production reliability.”
+(Krios pune)
+Q3 what is binary file ? 
+"A binary file stores data as raw bytes rather than human-readable characters. In C++, we can open it using ios::binary and use read() or write() to process the bytes. In automotive applications, binary log files can contain raw CAN or telemetry data, which we read and then parse and decode into meaningful values."
 
-**
-map → faster lookup
-Multithreading → concurrent processing
-Together → better overall performance for a suitable large workload.
+Q4.CAN DBC
+CAN = communication between ECUs
+CAN message = ID + data
+CAN signal = meaningful information extracted from the data
+DBC = definition that tells us how to decode the signal
 
+"CAN, or Controller Area Network, is an automotive communication protocol used for communication between different ECUs(Electronic control units). ECUs send CAN messages containing an identifier and data bytes over a common CAN bus. For example, an engine ECU can send RPM information, which another ECU or the instrument cluster can receive and use."
+
+CAN Message
+ ├── CAN ID
+ └── Data bytes
+
+ "DBC is a CAN database file that defines the structure of CAN messages, including message IDs, signals, start bits, signal lengths, scaling factors, offsets, byte order, and units. It allows us to decode raw CAN data into meaningful physical values."
+
+ CAN message → raw data → DBC → meaningful signal
+
+
+ Easy interview explanation
+
+You can say:
+
+"CAN is a communication protocol used by ECUs to exchange data. CAN messages contain raw bytes, and a DBC file defines the message ID, signal position, signal length, scaling factor, offset, and units. Using the DBC file, we can decode raw CAN data into meaningful signals such as vehicle speed, RPM, or temperature."
+
+Simple flow
+ECU
+ ↓
+CAN Message
+ ↓
+CAN ID + Data Bytes
+ ↓
+DBC File
+ ↓
+Decode Signal
+ ↓
+Vehicle Speed = 80 km/h
+
+Important: DBC is not part of the CAN protocol itself. It is a database/description file used by tools/software to interpret CAN messages.
