@@ -33,7 +33,7 @@ public:
     student &operator=(const student &other)
     {
         cout << "Copy Assignment operator called" << endl;
-        if (this != &other)
+        if (this != &other)// prevents self-assignment a = a 
         {
             delete[] name;
             name = new char[strlen(other.name) + 1];
