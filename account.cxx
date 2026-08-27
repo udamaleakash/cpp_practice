@@ -1,63 +1,37 @@
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 using namespace std;
 
-class A
+int binary(int arr[], int len, int key)
 {
-private:
-    char *name;
-
-public:
-    A(const char *data)
+    int low = 0;
+    int high = len - 1;
+    while (low <= high)
     {
-        name = new char[strlen(data) + 1];
-        strcpy(name, data);
+        int mid = low + (high - low) / 2;
+        if (arr[mid] == key)
+            return mid;
+        else if (arr[mid] < key)
+            low = mid + 1;
+        else
+            high = mid - 1;
     }
-    A(const A &other)
-    {
-        name = new char[strlen(other.name) + 1];
-        strcpy(name, other.name);
-    }
-
-    A &operator=(const A &other)
-    {
-        if (this != &other)
-        {
-            delete[] name;
-            name = new char[strlen(other.name) + 1];
-            strcpy(name, other.name);
-        }
-        return *this;
-    }
-    A(A &&other)
-    {
-        name = other.name;
-        other.name = nullptr;
-    }
-    A &operator=(A &&other)
-    {
-        if (this != &other)
-        {
-            delete[] name;
-            name = other.name;
-            other.name = nullptr;
-        }
-        return *this;
-    }
-
-    ~A()
-    {
-        delete[] name;
-        name = nullptr;
-    }
-};
-
+    return -1;
+}
 int main()
 {
-    A a1("Akash");
-    A a2("Prakash");
-    a2 = a1;
-    A a3("Swapnil");
-    a3 = move(a2);
+    int arr[] = {11, 33, 32, 67, 21, 3, 89};
+    int len = sizeof(arr) / sizeof(arr[0]);
+    sort(arr, arr + len);
+    for (auto it : arr)
+    {
+        cout << it << " ";
+    }
+    cout<<endl;
+    int result = binary(arr, len, 67);
+    if (result != -1)
+        cout << arr[result] << " is found at " << result << " index ";
+
     return 0;
 }
