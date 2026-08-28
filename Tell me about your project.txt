@@ -43,27 +43,17 @@ Speak in this order:
 
     6) Challenges, production issues, Optimization
     -> 
-    i)One major challenge was processing large transaction files 
+    “One of the main challenges I faced in the reconciliation module was handling large volumes of transactions efficiently. Initially, processing all transactions sequentially was taking more time, so I optimized the lookup using std::map, where the transaction number was used as the key. This gave me O(log n) lookup instead of scanning the complete transaction list.
 
-    Initially, Some files contained thousands of transaction records.
-    so the execution time was high because the code used repetitive loops and condition checks for transaction matching.
+Another challenge was that reconciliation rules were configurable. Different clients or scenarios could require transaction number + amount + date, amount + date, or amount-only matching. I handled this using an enum and a switch-based rule selection, which kept the business logic easy to maintain and extend.
 
-    To optimize this, I used STL containers like map for faster key based lookup and improved processing logic, which reduced execution time and improved performance.
+For large transaction volumes, I divided the records into independent batches and processed them using multiple worker threads. This improved throughput because different batches could be processed concurrently.
 
-    (Approach	Time Complexity
-    Nested Loops	-> O(N²)
-    std::map	-> O(N log N)
-    std::unordered_map	-> O(N) average)
+While introducing multithreading, I faced the issue of multiple threads accessing shared result/output data. This could cause race conditions or mixed output. I solved this by protecting the shared section using std::mutex and std::lock_guard, so only one thread accesses that critical section at a time.
 
-    ii)Another challenge was memory leaks in the application.
-    Some dynamically allocated memory was not being released properly, causing higher memory usage during large file processing.
-    I analyzed the issue using debugging and monitoring, fixed improper memory handling, 
-    I corrected the memory handling logic and ensured proper cleanup to stabilize the application.
+Another issue I handled was missing transactions. A transaction could exist in the ledger but not in the statement, so instead of treating it as a normal mismatch, I explicitly handled it as NOT FOUND.
 
-    production issue->
-    I also handled production issues, like incorrect status updates, missing record modifications, and transaction mismatches.
-    I first checked logs and identified that certain transaction conditions were not handled correctly.
-    Then I reproduced the issue in the test environment and debugged code, then I corrected the business condition logic, tested all related scenarios, and verified the output & Issue was resolved.
+Overall, the main challenges were performance, configurable business rules, missing records, and thread safety. I addressed them using map-based lookup, rule-based matching, batch processing, and mutex protection.”
 
 
 

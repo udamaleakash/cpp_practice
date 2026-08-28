@@ -1,9 +1,11 @@
 #include <iostream>
 using namespace std;
 
-void odd_even_print(int arr[], int len)
+void odd_even_print()
 {
     cout << "odd even print\n";
+    int arr[] = {2, 4, 5, 10, 33, 6, 89};
+    int len = sizeof(arr) / sizeof(arr[0]);
     int index = 0;
     for (int i = 0; i < len; i++)
     {
@@ -289,15 +291,13 @@ void occuarance_of_element()
     cout << "\noccuarance_of_element\n"
          << endl;
     occuarance_of_ele_using_arr();
-    occuarance_of_ele_using_map();//simply arr insert in map
+    occuarance_of_ele_using_map(); // simply arr insert in map
 }
 
 int main()
 {
-    int arr[] = {2, 4, 5, 10, 33, 6, 89};
-    int len = sizeof(arr) / sizeof(arr[0]);
 
-    odd_even_print(arr, len);
+    odd_even_print();
 
     move_zeros_to_end();
 

@@ -120,8 +120,7 @@ RC_RULE → business-rule selection */
 
 // Each thread processes its own batch
 void reconcileBatch(const vector<string>& batch,
-                    RC_RULE rule,
-                    int threadId)
+                    RC_RULE rule)
 {
     for (size_t i = 0; i < batch.size(); ++i)
     {
@@ -181,10 +180,30 @@ int main()
 
 
     // Create worker threads
-    thread t1(reconcileBatch, batch1, rule, 1);
-    thread t2(reconcileBatch, batch2, rule, 2);
+    thread t1(reconcileBatch, batch1, rule);
+    thread t2(reconcileBatch, batch2, rule);
 
     // Wait for both threads
     t1.join();
     t2.join();
  */
+
+ /*
+ Q. what challenges did you face in this reconciliation module?
+ ->
+ “One of the main challenges I faced in the reconciliation module was handling large volumes of transactions efficiently. Initially, processing all transactions sequentially was taking more time, so I optimized the lookup using std::map, where the transaction number was used as the key. This gave me O(log n) lookup instead of scanning the complete transaction list.
+
+Another challenge was that reconciliation rules were configurable. Different clients or scenarios could require transaction number + amount + date, amount + date, or amount-only matching. I handled this using an enum and a switch-based rule selection, which kept the business logic easy to maintain and extend.
+
+For large transaction volumes, I divided the records into independent batches and processed them using multiple worker threads. This improved throughput because different batches could be processed concurrently.
+
+While introducing multithreading, I faced the issue of multiple threads accessing shared result/output data. This could cause race conditions or mixed output. I solved this by protecting the shared section using std::mutex and std::lock_guard, so only one thread accesses that critical section at a time.
+
+Another issue I handled was missing transactions. A transaction could exist in the ledger but not in the statement, so instead of treating it as a normal mismatch, I explicitly handled it as NOT FOUND.
+
+Overall, the main challenges were performance, configurable business rules, missing records, and thread safety. I addressed them using map-based lookup, rule-based matching, batch processing, and mutex protection.”
+
+
+
+->“The main challenges were performance, configurable reconciliation rules, missing transactions, and thread safety. I used std::map for efficient transaction lookup, enum-based rules to keep the business logic configurable, and explicitly handled missing statement transactions using find(). For large volumes, I divided transactions into independent batches and processed them using worker threads. During multithreading, I protected shared result/output data with mutex and lock_guard to avoid race conditions.”
+*/
