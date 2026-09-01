@@ -173,7 +173,7 @@ int main()
     cout << *p;
 
     /* 3) */
-    char *ptrx = new char[100]; // p is a variable-> stack & actual int 100-> heap
+    char *ptrx = new char[100]; // ptrx is a variable-> stack & actual int 100-> heap
     delete[] ptrx;
 
     // 4)

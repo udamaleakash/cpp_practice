@@ -43,6 +43,21 @@ int main()
     list<int> l = {23, 56, 56, 78, 23, 4, 90};
     list<int> l2 = {23, 56, 56, 78, 23, 4, 90};
 
+/*
+array          → Fixed-size array
+vector         → Dynamic array
+list           → Doubly linked list
+
+set            → Unique + Sorted
+unordered_set  → Unique + Unordered
+
+map            → Unique key + Sorted
+unordered_map  → Unique key + Unordered
+
+multimap       → Duplicate key + Sorted
+unordered_multimap → Duplicate key + Unordered
+*/
+
     for (auto t : m3)
     {
         cout << t.first << "," << t.second << endl;

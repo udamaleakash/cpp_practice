@@ -317,5 +317,16 @@ int main()
 
     occuarance_of_element();
 
+    const_pointer_concept();
+
     return 0;
+}
+void const_pointer_concept(){
+
+// | Declaration          | Value `*p` (value)| Pointer `p` (point to)|Name
+// | -------------------- | ---------------   | ---------------       |-------------------
+// | `const int* p`       | ❌ Cannot change  | ✅ Can change         |pointer to const
+// | `int* const p`       | ✅ Can change     | ❌ Cannot change      |const to pointer
+// | `const int* const p` | ❌ Cannot change  | ❌ Cannot change      |const pointer const
+
 }
